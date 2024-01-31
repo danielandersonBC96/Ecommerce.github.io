@@ -1,6 +1,9 @@
-.Item{
+.item{
 
     width: 350px;
+   background-color:black;
+   color: aliceblue;
+   border-radius: 75px;
 
 }
 
