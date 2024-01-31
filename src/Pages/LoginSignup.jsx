@@ -1,9 +1,7 @@
 import React from 'react'
 
-function LoginSignup() {
+export const LoginSignup = () => {
   return (
     <div>LoginSignup</div>
   )
 }
-
-export default LoginSignup
