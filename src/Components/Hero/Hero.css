@@ -20,7 +20,7 @@
 
 .hero-left h2 {
     
-    color:#090909;
+    color: #fff;
     font-size: 26px;
     font-weight: 600;
 
@@ -33,3 +33,36 @@
     font-weight:  700 ;
 
 }
+
+.hero-hand-icon{
+
+    display:contents;
+    align-items: center;
+    gap: 20px
+}
+
+.hero-hand-icon img{
+
+    width:  85px ;
+
+}
+
+.hero-latest-btn{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 210px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 75px;
+    margin-bottom: 30px;
+    background: #ff4141;
+    color: white;
+    font-size: 22px ;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+

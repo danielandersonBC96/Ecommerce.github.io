@@ -8,7 +8,7 @@ export const Hero = () => {
   return (
     <div className='hero ' >  
       <div className="hero-left">
-        <h2> NEEWS ARRIVALS ONLY </h2>
+        <h2> NEWS ARRIVALS ONLY </h2>
         <div>
           <div className="hand-han-icon">
             <p> new </p>
