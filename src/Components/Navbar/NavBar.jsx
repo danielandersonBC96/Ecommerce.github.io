@@ -22,10 +22,10 @@ export const NavBar = () => {
 
          <ul className='nav-menu'> 
 
-           <li onClick={() =>{setMenu("shop")}}> <Link to='/'> Shop </Link>{ menu === "shop"?<h/> : <></> }</li>
-           <li onClick={() =>{setMenu('mens')} }> <Link to='/mens'> Mens </Link>{ menu === "mens"?<h/> : <></> }   </li>
-           <li onClick={() =>{setMenu('womens')}}> <Link to='/womens'> womens</Link>{ menu === "womens"?<h/> : <></> }  </li>
-           <li onClick={() =>{setMenu('kids')}} >  <Link to='/kids'> Kids  </Link> { menu === " kids"?<h/> : <></> }   </li>
+           <li onClick={() =>{setMenu("shop")}}> <Link to='/' style={{ textDecoration: 'none '}}> Shop </Link>{ menu === "shop"?<h/> : <></> }</li>
+           <li onClick={() =>{setMenu('mens')} }> <Link to='/mens ' style={{ textDecoration: 'none '}}> Mens </Link>{ menu === "mens"?<h/> : <></> }   </li>
+           <li onClick={() =>{setMenu('womens')}}> <Link to='/womens ' style={{ textDecoration: 'none '}} > womens</Link>{ menu === "womens"?<h/> : <></> }  </li>
+           <li onClick={() =>{setMenu('kids')}} >  <Link to='/kids' style={{ textDecoration: 'none '}}> Kids  </Link> { menu === " kids"?<h/> : <></> }   </li>
         
          </ul>
          
@@ -38,7 +38,7 @@ export const NavBar = () => {
                  <Link>  
                    <img src={ cart_icon} alt=''/>
                  </Link>
-                 
+
               <div className='nav-cart-count'>0</div>
 
          </div>
