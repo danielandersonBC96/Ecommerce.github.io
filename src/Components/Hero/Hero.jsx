@@ -12,8 +12,6 @@ export const Hero = () => {
         <div>
           <div className="hand-han-icon">
             <p> new </p>
-          
-
           </div>
           <p> collection </p>
           <p>for everyone </p>

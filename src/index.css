@@ -1,6 +1,9 @@
 
 *{
   margin: 0 ;
+  scroll-behavior: auto;
+  scroll-behavior: x;
+
 }
 body {
   margin: 0;

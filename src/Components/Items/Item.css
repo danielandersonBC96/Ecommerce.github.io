@@ -1,27 +1,36 @@
 .item{
 
     width: 350px;
-   background-color:black;
-   color: aliceblue;
+  
+   color: aliceblue; 
+   background-color:rgb(187, 91, 91) ;
    border-radius: 75px;
+   padding: 60px;
 
 }
 
 .item p {
 
     margin: 6px 0px ;
+    padding: 10px;
+}
+
+.item img {
+
+    border-radius: 75px;
 }
 
 .item-prices{
 
     display: flex;
-    gap: 20px
+    gap: 20px;
+    padding: 10px;
 
 }
 
 .item-prices{
 
-    color:#374151;
+    color: black;
     font-size: 18px;
     font-weight: 600;
 }
