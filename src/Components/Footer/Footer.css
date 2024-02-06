@@ -6,7 +6,6 @@
     gap: 50px;
     background-color: black;
     height: 500px;
-
 }
 
 .footer-logo{
@@ -15,7 +14,7 @@
     gap:20px
 }
 
-.footer-logo p  {
+.footer-logo p {
     color: #383838;
     font-size: 46px;
     font-weight: 700;
@@ -29,28 +28,29 @@
     font-size: 20px;
 }
 
-.footer-links li{
+.footer-links li {
     cursor: pointer;
     background-color: #ebebeb;
     color: black;
     padding: 10px;
 }
 
-.footer-social-icon{
+.footer-social-icon {
      display: flex;
      gap: 40px;
-     background-color: #ebebeb;
+     background-color: white;
      padding: 10px;
+     
 
 }
-.footer-icon-container{
+.footer-icon-container {
     padding: 10px;
     padding-bottom: 6px;
-    background: #fbfbfb;
+    background:  black;
     border: 1px solid #ebebeb;
-}
-.footer-copyright{
 
+}
+.footer-copyright {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,6 +61,11 @@
     font-size: 20px;
 }
 
-.footer-copyright p{
+.footer-copyright hr {
     color: #ebebeb;
-}
+    width: 80%;
+    border: none;
+    border-radius: 10px;
+    height: 3px;
+    background-color: #c7c7c7;
+} 

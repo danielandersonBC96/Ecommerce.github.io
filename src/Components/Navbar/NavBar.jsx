@@ -36,7 +36,10 @@ export const NavBar = () => {
                  </Link> 
 
                  <Link>  
-                   <img src={ cart_icon} alt=''/>
+                   
+                   <div className='cart'>
+                        <img src={ cart_icon} alt=''/>
+                   </div>
                  </Link>
 
               <div className='nav-cart-count'>0</div>
