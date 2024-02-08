@@ -2,7 +2,7 @@
 import './App.css';
 import { NavBar } from './Components/Navbar/NavBar';
 import { Shop } from './Pages/Shop';
-import { ShopCategory  }  from './Pages/ShopCategory';
+import { ShopCategory }  from './Pages/ShopCategory';
 import { Product} from './Pages/Product';
 import { Cart } from './Pages/Cart';
 import { LoginSignup } from './Pages/LoginSignup';
