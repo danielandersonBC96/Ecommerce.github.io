@@ -34,3 +34,16 @@
     padding: 10px;
     gap: 5px; /* Espaçamento entre as imagens */
 }
+
+.shopcategory-loadmore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 150px auto;
+    width: 233px;
+    height: 69px;
+    border-radius: 75px;
+    background: #ededed;
+    color: #787878;
+    cursor: pointer;
+}

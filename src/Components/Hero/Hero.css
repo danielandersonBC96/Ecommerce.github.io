@@ -2,7 +2,7 @@
 .hero{
 
     height: 100vh;
-    background:  linear-gradient( 180deg  ,rgb(187, 91, 91), #e1ffea22 60% );
+    background:  linear-gradient( 180deg  ,rgb(187, 91, 91), rgb(221, 217, 217) );
     display: flex;
 }
 
