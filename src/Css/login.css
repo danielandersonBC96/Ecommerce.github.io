@@ -11,7 +11,10 @@
     background-color: white;
     margin: auto;
     padding: 40px 60px;
+    border-radius: 30px;
+    border:  1px solid  black; 
 }
+
 .loginsignup-container h1{
 
     margin: 20px 0px;
