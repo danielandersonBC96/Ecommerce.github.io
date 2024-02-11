@@ -12,10 +12,12 @@ export const LoginSignup = () => {
                 <input type="email" placeholder='Email Addres'/>
                 <input type='password' placeholder=' Password'/>
              </div>
-             <button>Continue</button>
+             <button> Sign in </button>
+             <button> Create Account  </button>
         </div>
         <p className='loginsignup-login'> 
         Already have an account?  <span> Login </span> 
+        
         </p>
         <div className="loginsignup-agree">
           <input type="checkbox" name='' id=''/>
