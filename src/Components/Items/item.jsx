@@ -10,7 +10,7 @@ export const Item = (props) => {
                 
                 <Link to={`/product${props.id}`}>  <img src={props.image} alt=''/> </Link>
                 <p>{props.name}</p> 
-                <p>{props.category}</p>
+              
                   <div className='items-prices'>
                       <div className='item-price-new'>                     
                              ${props.new_price}

@@ -3,16 +3,18 @@
     width: 350px;
   
    color: rgb(0, 0, 0); 
-   background-color:rgb(189, 184, 184) ;
+   background-color:rgb(236, 236, 236) ;
    border-radius: 75px;
    padding: 10px;
-
+  gap: 17px;
 }
 
 .item p {
 
     margin: 6px 0px ;
     padding: 10px;
+    background-color: #000000;
+    color: azure;
 }
 
 .item img {
