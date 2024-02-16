@@ -36,9 +36,13 @@ export const ProductDisplay = (props) => {
                 <div className="productdisplay-right-description">
                   <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, libero officiis! Iste quas dolor dolorem adipisci perspiciatis aliquid delectus eveniet reprehenderit repellendus laudantium optio velit suscipit, ipsam est nobis a.</p>
                 </div>
+
+                <h1> Seletec Size </h1>
                 <div className="productdisplay-right-size">
-                    <h1> Seletec Size </h1>
+                   
                      <div className="productdisplay-right-size">
+                
+
                          <div>S</div>
                          <div>M</div>
                          <div>L</div>

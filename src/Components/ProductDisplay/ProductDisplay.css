@@ -1,15 +1,23 @@
 .productdisplay {
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    background-color: rgb(250, 242, 231);
+   
   }
   
   .productdisplay-left,
   .productdisplay-right {
     width: 50%;
+    padding: 10px;
   }
   
   .productdisplay-left {
     margin-bottom: 20px;
+    background-color: rgb(197, 191, 191);
+    width: 200px;
+    height: 500px;
+    border-radius: 35px;
   }
   
   .productdisplay-img-list {
@@ -37,6 +45,7 @@
   img{
 
     border-radius: 35px;
+   
   }
   
   .productdisplay-right-star p {

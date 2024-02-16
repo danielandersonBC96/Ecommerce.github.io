@@ -38,3 +38,32 @@
     transform: rotate(360deg);
   }
 }
+@media screen and (min-width: 576px) {
+  .breadcrum {
+    margin: 60px 40px; /* Ajuste a margem para dispositivos médios */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .breadcrum {
+    margin: 60px 80px; /* Ajuste a margem para dispositivos maiores */
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .breadcrum {
+    margin: 60px 120px; /* Ajuste a margem para dispositivos grandes */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .breadcrum {
+    margin: 60px 170px; /* Ajuste a margem para dispositivos extra grandes */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .breadcrum {
+    margin: 20px 10px; /* Ajuste a margem para dispositivos móveis */
+  }
+}

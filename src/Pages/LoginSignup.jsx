@@ -14,15 +14,17 @@ export const LoginSignup = () => {
              </div>
              <button> Sign in </button>
              <button> Create Account  </button>
-        </div>
-        <p className='loginsignup-login'> 
+
+             <p className='loginsignup-login'> 
         Already have an account?  <span> Login </span> 
-        
-        </p>
         <div className="loginsignup-agree">
           <input type="checkbox" name='' id=''/>
             
         </div>
+        </p>
+        </div>
+       
+        
      </div>
   )
 }
