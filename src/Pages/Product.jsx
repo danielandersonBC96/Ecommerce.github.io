@@ -5,15 +5,22 @@ import{useParams} from  'react-router-dom';
 import { ProductDisplay } from '../Components/ProductDisplay/ProductDisplay';
 
 export const Product = () => {
-  const { all_product} = useContext(ShopContext);
-  const {productId} = useParams();
-  const product = all_product.find( (e) => e.id === Number(productId));
+  const { all_product } = useContext(ShopContext);
+  const { productId } = useParams();
+
+  console.log(productId)
+   //Encontrando o produto com base no ID
+    const product = all_product.find((e) => e.id === parseInt(productId));
+
+    // Verificando se o produto existe
+  //if (!product) {
+    //return <div>Produto não encontrado.</div>;
+ // }
 
   return (
    <div>
-    <Breadcrums product={product}/>
-    <ProductDisplay product={product}/>
-   </div>
- 
-    )
-}
+  <Breadcrums  product={product}/> 
+     <ProductDisplay  product={product}/>
+    </div>
+  );
+};

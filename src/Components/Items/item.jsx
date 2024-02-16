@@ -8,19 +8,22 @@ export const Item = (props) => {
       
               <div className='item' >
                 
-                <img src={props.image}/>
+                <Link to={`/product${props.id}`}>  <img src={props.image} alt=''/> </Link>
                 <p>{props.name}</p> 
+                <p>{props.category}</p>
                   <div className='items-prices'>
                       <div className='item-price-new'>                     
                              ${props.new_price}
                       </div>
                       <div className='item-price-old'>
                              ${ props.old_price}     
-                        
+                           
                       </div>  
 
-                   <Link to={`/product${props.id}`}> <button>Check now </button> </Link>
-                       
+                   
+                       <div>
+                       <Link to={`/product/${props.id}`}> <button>Check now </button> </Link>
+                       </div>
                   </div>       
               </div>
        
