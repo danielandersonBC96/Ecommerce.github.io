@@ -43,7 +43,8 @@
     width: 233px;
     height: 69px;
     border-radius: 75px;
-    background: #ededed;
+    background: #ededed88;
     color: #787878;
     cursor: pointer;
+    border: solid 1px black;
 }

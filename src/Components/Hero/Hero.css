@@ -4,6 +4,7 @@
     height: 100vh;
     background:  linear-gradient( 180deg  ,rgb(187, 91, 91), rgb(221, 217, 217) );
     display: flex;
+    margin: 100px;
 }
 
 .hero-left{
@@ -45,6 +46,7 @@
 .hero-hand-icon img{
 
     width:  85px ;
+ 
 
 }
 

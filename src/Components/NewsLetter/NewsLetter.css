@@ -5,9 +5,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: auto;
+    margin: 100px;
     padding: 0px 140px;
-    margin-bottom: 150px;
+    margin-bottom: 250px;
     background:  linear-gradient( 180deg , #fde1ff  0% , #fde1ff 60%);
     gap: 30px; 
 }

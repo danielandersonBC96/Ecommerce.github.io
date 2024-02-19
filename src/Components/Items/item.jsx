@@ -22,7 +22,7 @@ export const Item = (props) => {
 
                    
                        <div>
-                       <Link to={`/product/${props.id}`}> <button>Check now </button> </Link>
+                       <Link to={`/product/${props.id}`}> <button className='button-item'>Check now </button> </Link>
                        </div>
                   </div>       
               </div>
