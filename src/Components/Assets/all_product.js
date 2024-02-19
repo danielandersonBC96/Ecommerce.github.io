@@ -230,7 +230,7 @@ let all_product = [
   },
   {
     id: 25,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    name: "Boys Orange Colourblocked Hooded Sweatshirt flutter",
     category: "kid",
     image: p25_img,
     new_price: 85.0,
@@ -310,7 +310,7 @@ let all_product = [
   },
   {
     id: 35,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    name: "Boys Orange Colourblocked Hooded Sweatshirt  flutter",
     category: "kid",
     image: p35_img,
     new_price: 85.0,

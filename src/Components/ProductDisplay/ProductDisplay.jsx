@@ -13,46 +13,51 @@ export const ProductDisplay = (props) => {
              
                 <div className="productdisplay-img">
                     <img className='productdisplay-main-img ' src={product.image} alt=''/> 
+                   
                 </div>
+                
+                
             </div>
             <div className="productdisplay-right">
                 <h1>{product.name}</h1>
-                <div className="productdisplay-right-star">
+                
+                <div className="productdisplay-right-prices">
+                    <div className="productdisplay-right-price-old">
+                       old price: ${product.old_price}
+                    </div>
+                    <div className="productdisplay-right-price-new">
+                        new price: ${product.new_price}
+                    </div>
+                   
+                    <div className="productdisplay-right-star">
+                    Assessment:
                     <img src={star_icon} alt=''/>
                     <img src={star_icon} alt=''/>
                     <img src={star_icon} alt=''/>
                     <img src={star_icon} alt=''/>
                     <img src={star_dull_icon} alt=''/>
-                    <p>(122)</p>
+            
                 </div>
-                <div className="productdisplay-right-prices">
-                    <div className="productdisplay-right-price-old">
-                        ${product.old_price}
-                    </div>
-                    <div className="productdisplay-right-price-new">
-                        ${product.new_price}
-                    </div>
                 </div>
                 <div className="productdisplay-right-description">
-                  <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, libero officiis! Iste quas dolor dolorem adipisci perspiciatis aliquid delectus eveniet reprehenderit repellendus laudantium optio velit suscipit, ipsam est nobis a.</p>
+
+
+                  <p> Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, libero officiis! Iste quas dolor dolorem adipisci perspiciatis aliquid delectus eveniet reprehenderit repellendus laudantium optio velit suscipit, ipsam est nobis a.</p>
                 </div>
 
-                <h1> Seletec Size </h1>
+        
                 <div className="productdisplay-right-size">
                    
-                     <div className="productdisplay-right-size">
-                
-
-                         <div>S</div>
-                         <div>M</div>
-                         <div>L</div>
-                         <div>XL</div>
-                         <div>XXL</div>
-                     </div>
+        
                 </div>
+                
+                <p className='productdisplay-right-category'>Category : <span> {product.category}</span>
+              
+                </p>
                 <button>Add Cart</button>
-                <p className='productdisplay-right-category'>Category : <span> {product.category}</span></p>
             </div>
+
+           
         </div>
     );
     }
