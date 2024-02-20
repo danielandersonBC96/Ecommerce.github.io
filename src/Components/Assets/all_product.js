@@ -310,7 +310,7 @@ let all_product = [
   },
   {
     id: 35,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt  flutter",
+    name: "  boys Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse ",
     category: "kid",
     image: p35_img,
     new_price: 85.0,

@@ -14,7 +14,7 @@ let new_collections = [
   },
   {
     id: 35,
-    name: "Boys Orange Colourblocked Hooded Sweatshirt",
+    name: " Boys Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
     image: p2_img,
     new_price: 85.0,
     old_price: 120.5,
