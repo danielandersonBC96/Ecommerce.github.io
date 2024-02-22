@@ -170,8 +170,9 @@
  }
 
  .ratting{
-  width: 100px;
-  height: 50px;
+  width: 90px;
+  height: 70px;
   padding: 10px;
   margin-right: 10px;
+  border-radius: 15px;
  }
