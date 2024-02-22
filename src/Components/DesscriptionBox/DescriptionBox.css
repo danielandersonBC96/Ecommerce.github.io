@@ -155,15 +155,23 @@
  }
  
  .username-input{
-   width: 50%;
+   width: 44%;
    height: 50px; /* Defina a altura desejada para a área de texto */
    resize: none; /* Impede redimensionamento manual */
    padding: 10px;
    font-size: 16px;
     border-radius: 15px;
+    margin-bottom: 35px;
 
  }
 
  h2{
    margin-bottom: 50px;
+ }
+
+ .ratting{
+  width: 100px;
+  height: 50px;
+  padding: 10px;
+  margin-right: 10px;
  }

@@ -9,6 +9,26 @@ export const DescriptionBox = () => {
   const [commentsList, setCommentsList] = useState(JSON.parse(initialComments));
   const [editIndex, setEditIndex] = useState(null);
   const [username, setUsername] = useState('');
+  const [averageRating, setAverageRating] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [isRatingSubmitted, setIsRatingSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Filter comments based on product ID
+    const filteredComments = JSON.parse(initialComments).filter(comment => comment.productId === productId);
+    setCommentsList(filteredComments);
+
+    // Calculate average rating for filtered comments
+    const calculateAverageRating = () => {
+      if (filteredComments.length === 0) {
+        return 0;
+      }
+      const totalRating = filteredComments.reduce((acc, comment) => acc + (comment.rating || 0), 0);
+      return totalRating / filteredComments.length;
+    };
+    const average = calculateAverageRating();
+    setAverageRating(average);
+  }, [initialComments, productId]);
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
@@ -18,28 +38,35 @@ export const DescriptionBox = () => {
     setUsername(event.target.value);
   };
 
+  const handleRatingChange = (event) => {
+    setRating(parseInt(event.target.value));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!username) {
-      alert('Por favor, insira seu nome.');
+      alert('Please enter your name.');
       return;
     }
     if (editIndex !== null) {
       const updatedComments = [...commentsList];
       updatedComments[editIndex].text = comment;
+      updatedComments[editIndex].rating = rating; // Add the rating to the edited comment
       setCommentsList(updatedComments);
       setEditIndex(null);
     } else {
-      const newComment = { user: username, text: comment, productId: productId };
+      const newComment = { user: username, text: comment, rating: rating, productId: productId };
       const newComments = [...commentsList, newComment];
       setCommentsList(newComments);
       localStorage.setItem(`product_${productId}_comments`, JSON.stringify(newComments));
     }
     setComment('');
+    setRating(0);
   };
 
   const handleEdit = (index) => {
     setComment(commentsList[index].text);
+    setRating(commentsList[index].rating || 0); // Set the rating when editing
     setEditIndex(index);
   };
 
@@ -50,10 +77,18 @@ export const DescriptionBox = () => {
     localStorage.setItem(`product_${productId}_comments`, JSON.stringify(updatedComments));
   };
 
-  useEffect(() => {
-    const initialComments = localStorage.getItem(`product_${productId}_comments`) || '[]';
-    setCommentsList(JSON.parse(initialComments));
-  }, [productId]);
+  const handleRatingSubmit = () => {
+    if (rating === 0) {
+      alert('Please select a rating before submitting.');
+      return;
+    }
+    setIsRatingSubmitted(true);
+    const newRatingComment = { user: username, rating: rating, productId: productId };
+    const newComments = [...commentsList, newRatingComment];
+    setCommentsList(newComments);
+    localStorage.setItem(`product_${productId}_comments`, JSON.stringify(newComments));
+    setRating(0);
+  };
 
   return (
     <div className='descriptionbox'>
@@ -62,40 +97,56 @@ export const DescriptionBox = () => {
         <div className="descrptionbox-nav-box-fade">Reviews({commentsList.length})</div>
       </div>
       <div className="descriptionbox-description">
-        <p>
-          Leave a comment about the product
-        </p>
+        <p>Leave a comment about the product</p>
         <form onSubmit={handleSubmit} className="comment-form">
           <div className="comment-textarea-wrapper">
-            <textarea
+
+          <select value={rating} onChange={handleRatingChange} className='ratting'>
+              <option value={0}>rating </option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+            <input
               type="text"
               value={username}
               onChange={handleUsernameChange}
-              placeholder="Seu nome"
+              placeholder="Your name"
               className="username-input"
             />
+             
             <textarea
               value={comment}
               onChange={handleCommentChange}
-              placeholder="Adicione um comentário..."
+              placeholder="Add a comment..."
               className="comment-textarea"
             />
-            <button type="submit" className="comment-button">{editIndex !== null ? 'Salvar' : 'Enviar'}</button>
+           
+            <button type="submit" className="comment-button">{editIndex !== null ? 'Save' : 'Submit'}</button>
           </div>
         </form>
         <div className="comments-section">
-          <h2>Comentários:</h2>
+        
+          <div className="average-rating-section">
+          <h2>Rating :</h2>  
+          <p>{averageRating.toFixed(1)}</p>
+        </div>
+      
           <ul>
             {commentsList.map((comment, index) => (
               <li key={index}>
-                <strong className='nome'>{comment.user}:</strong> {comment.text}
-                <button onClick={() => handleEdit(index)} className='editar'>Editar</button>
-                <button onClick={() => handleDelete(index)} className='excluir'>Excluir</button>
+                <strong className='nome'>{comment.user}:</strong> {comment.text} {/* Display the comment */}
+                {comment.rating && <span> - Rating: {comment.rating}</span>} {/* Display the rating if it exists */}
+                <button onClick={() => handleEdit(index)} className='editar'>Edit</button>
+                <button onClick={() => handleDelete(index)} className='excluir'>Delete</button>
               </li>
             ))}
           </ul>
         </div>
-      </div>
+       
+        </div>
     </div>
   );
 };
