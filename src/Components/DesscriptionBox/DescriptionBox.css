@@ -107,7 +107,7 @@
  
  .excluir {
  padding: 10px;
-   width: 50px;
+   width: 70px;
    height: 50px;
    border-radius: 15px;
    background-color: white; 
@@ -175,4 +175,12 @@
   padding: 10px;
   margin-right: 10px;
   border-radius: 15px;
+ }
+
+ .coments-box{
+  background-color:  white;
+  padding: 60px;
+  border: solid 1px black;
+  margin-top: 50px;
+  border-radius: 15px;   
  }

@@ -95,9 +95,15 @@ export const DescriptionBox = () => {
       <div className="description-navigator">
         <div className="descriptionbox-nav-box">Product Reviews</div>
         <div className="descrptionbox-nav-box-fade">Reviews({commentsList.length})</div>
+       
       </div>
       <div className="descriptionbox-description">
         <p>Leave a comment about the product</p>
+        <div className="average-rating-section">
+          <h2>Rating :</h2>  
+          <p>{averageRating.toFixed(1)}</p>
+        </div>
+      
         <form onSubmit={handleSubmit} className="comment-form">
           <div className="comment-textarea-wrapper">
 
@@ -129,12 +135,8 @@ export const DescriptionBox = () => {
         </form>
         <div className="comments-section">
         
-          <div className="average-rating-section">
-          <h2>Rating :</h2>  
-          <p>{averageRating.toFixed(1)}</p>
-        </div>
-      
-          <ul>
+          
+          <ul className='coments-box'>
             {commentsList.map((comment, index) => (
               <li key={index}>
                 <strong className='nome'>{comment.user}:</strong> {comment.text} {/* Display the comment */}
