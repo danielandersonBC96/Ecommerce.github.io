@@ -96,6 +96,7 @@
 
 
  .editar {
+   padding: 10px;
    width: 50px;
    height: 50px;
    border-radius: 15px;
@@ -105,6 +106,7 @@
  }
  
  .excluir {
+ padding: 10px;
    width: 50px;
    height: 50px;
    border-radius: 15px;
@@ -141,7 +143,7 @@
  }
  
  .editar, .excluir  {
-   padding: 5px 10px;
+   padding: 10px 10px;
    font-size: 14px;
    margin-left: 10px;
  }
@@ -160,4 +162,8 @@
    font-size: 16px;
     border-radius: 15px;
 
+ }
+
+ h2{
+   margin-bottom: 50px;
  }
