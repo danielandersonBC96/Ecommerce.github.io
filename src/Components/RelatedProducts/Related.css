@@ -1,0 +1,52 @@
+.relatedproducts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px; /* Adicionado padding para espaçamento entre o conteúdo e as bordas */
+  }
+  
+  .relatedproducts h1 {
+    color: #171717;
+    font-size: 2.5rem; /* Alterado para tamanho de fonte responsivo */
+    font-weight: 600;
+    margin-bottom: 20px; /* Adicionado espaçamento inferior para separar do conteúdo abaixo */
+  }
+  
+  .relatedproducts hr {
+    width: 100%; /* Alterado para largura total */
+    max-width: 200px; /* Limitado a uma largura máxima */
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+    margin: 0 auto; /* Centralizado horizontalmente */
+  }
+  
+  .relatedproducts-item {
+    width: 100%; /* Alterado para largura total */
+    max-width: 350px; /* Limitado a uma largura máxima */
+    color: #000;
+    background-color: #faf2e7; /* Alterado para um tom mais claro */
+    border-radius: 15px;
+    padding: 20px; /* Alterado para um preenchimento mais equilibrado */
+    margin-bottom: 20px; /* Adicionado espaçamento inferior entre os itens */
+    box-sizing: border-box; /* Incluído para garantir que o preenchimento não aumente a largura */
+    display: flex;
+    margin-left: -1390px;
+  }
+  
+  /* Regra de mídia query para dispositivos com largura máxima de 600px */
+  @media screen and (max-width: 600px) {
+    .relatedproducts {
+      padding: 10px; /* Reduzido o padding para telas menores */
+    }
+  
+    .relatedproducts h1 {
+      font-size: 2rem; /* Tamanho de fonte reduzido para telas menores */
+    }
+  
+    .relatedproducts-item {
+      max-width: 100%; /* Largura total para telas menores */
+    }
+  }
+  

@@ -3,7 +3,7 @@ import "./ProductDisplay.css";
 import star_icon from '../Assets/star_icon.png';
 import star_dull_icon from '../Assets/star_dull_icon.png'
 import cart_icon from '../Assets/cart_icon.png'
-import { DescriptionBox } from '../DesscriptionBox/DescriptionBox';
+
 export const ProductDisplay = (props) => {
     const { product } = props;
     console.log( product)
@@ -64,7 +64,7 @@ export const ProductDisplay = (props) => {
                
                 <button className='buttondisplay'>Add to cart   <br/>   <img className='carticon' src={ cart_icon} alt=''/>   </button>
            
-                <DescriptionBox/>
+             
             </div> 
           
    

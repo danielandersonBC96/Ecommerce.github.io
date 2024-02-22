@@ -3,6 +3,8 @@ import { ShopContext } from '../Context/ShopContext'
 import { Breadcrums } from '../Components/Breadcrums/Breadcrums';
 import{useParams} from  'react-router-dom';
 import { ProductDisplay } from '../Components/ProductDisplay/ProductDisplay';
+import { DescriptionBox } from '../Components/DesscriptionBox/DescriptionBox';
+import { RelatedProducts } from '../Components/RelatedProducts/RelatedProducts';
 
 export const Product = () => {
   const { all_product } = useContext(ShopContext);
@@ -17,10 +19,13 @@ export const Product = () => {
     //return <div>Produto não encontrado.</div>;
  // }
 
-  return (
-   <div>
-  <Breadcrums  product={product}/> 
-     <ProductDisplay  product={product}/>
-    </div>
-  );
+ return (
+  <div>
+    <Breadcrums product={product}/> 
+    <ProductDisplay product={product}/>
+    <DescriptionBox/>
+     <RelatedProducts/>
+  </div>
+);
+
 };

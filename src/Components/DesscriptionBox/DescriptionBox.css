@@ -1,39 +1,163 @@
- .descriptionbox{
-    margin:  110px 10px;
-    margin-bottom: 50px;
-    
+.descriptionbox {
+   margin: 110px 10px;
+   margin-bottom: 50px;
+ }
+ 
+ .description-navigator {
+   display: flex;
+   flex-wrap: wrap; /* Permitir que os itens se ajustem ao tamanho da tela */
+   margin-bottom: 20px; /* Reduzir a margem inferior para telas menores */
+ }
+ 
+ .descriptionbox-nav-box {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 16px;
+   font-weight: 600;
+   width: 171px;
+   height: 70px;
+   margin-bottom: 10px; /* Reduzir a margem inferior para telas menores */
+ }
+ 
+ .descrptionbox-nav-box-fade {
+   background-color: rgba(0, 0, 0, 0.048);
+   color: #555;
+   padding: 20px; /* Reduzir o preenchimento para telas menores */
+   border-radius: 15px;
+   margin: 5px;
+ }
+ 
+ .descriptionbox-description {
+   display: flex;
+   flex-direction: column;
+   gap: 25px;
+   padding: 20px; /* Reduzir o preenchimento para telas menores */
+   padding-bottom: 50px; /* Reduzir o preenchimento inferior para telas menores */
+ }
+ 
+ /* Regras de mídia query para telas menores */
+ @media screen and (max-width: 768px) {
+   .descriptionbox {
+     margin: 50px 10px; /* Reduzir a margem superior para telas menores */
+   }
+ 
+   .descriptionbox-nav-box {
+     width: 100%; /* Alterar a largura para ocupar a largura total da tela */
+   }
+ 
+   .descrptionbox-nav-box-fade {
+     padding: 10px; /* Reduzir o preenchimento para telas menores */
+   }
+ 
+   .descriptionbox-description {
+     padding: 10px; /* Reduzir o preenchimento para telas menores */
+     padding-bottom: 30px; /* Reduzir o preenchimento inferior para telas menores */
+   }
  }
 
- .descriptionbox-navigator{
-    display: flex;
+ .comment-form {
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ .comment-textarea-wrapper {
+   position: relative;
+   width: 100%;
+ }
+ 
+ .comment-textarea {
+   width: 50%;
+   height: 200px; /* Defina a altura desejada para a área de texto */
+   resize: none; /* Impede redimensionamento manual */
+   padding: 10px;
+   font-size: 16px;
+    border-radius: 15px;
+ }
+ 
+ .comment-button {
+   align-self: flex-end; /* Botão alinhado à direita */
+   margin-top: 10px;
+   margin: -250px;
+   width: 230px; /* Botão com largura total */
+   padding: 10px;
+   margin-top: 10px
+   
+   
+ }
+ 
+ /* Estilo para garantir que a área de texto seja sempre visível */
+ @media screen and (max-height: 768px) {
+   .comment-textarea-wrapper {
+     height: calc(100vh - 200px); /* Ajuste conforme necessário */
+     overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+   }
  }
 
- .descriptionbox-nav-box{
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 600;
-    width: 171px;
-    height: 70px;
-    margin-bottom: 50px;
+ .editar {
+   width: 50px;
+   height: 50px;
+   border-radius: 15px;
+   background-color: white; 
+   color: black;
+   margin-right: 10px; /* Adiciona margem à direita para criar espaço */
+ }
+ 
+ .excluir {
+   width: 50px;
+   height: 50px;
+   border-radius: 15px;
+   background-color: white; 
+   color: black;
+   margin-left: 10px; /* Adiciona margem à esquerda para criar espaço */
+ }
+ comments-section {
+   margin-top: 20px; /* Adiciona margem no topo da seção de comentários */
+   
+ }
+ 
+ .comments-section li {
+   display: flex;
+   align-items: center; /* Alinha os itens verticalmente */
+   margin-bottom: 10px; /* Adiciona espaçamento entre os comentários */
+ }
+ 
+ .comments-section li button {
+   margin-left: 10px; /* Adiciona margem à esquerda para criar espaço entre os botões */
  }
 
- .descrptionbox-nav-box-fade{
-
-    background-color: rgba(0, 0, 0, 0.048);
- color: #555;
- padding: 50PX;
- border-radius: 15px;
-
+ .user{
+   margin-right: 10px;
  }
 
- .descriptionbox-description{
 
-    display: flex;
-    flex-direction: column;
-    gap: 25;
-    padding: 40PX;
-    padding-bottom: 70PX;
+
+ .comments-section li {
+   margin-bottom: 10px;
+   padding: 10px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+ }
+ 
+ .editar, .excluir  {
+   padding: 5px 10px;
+   font-size: 14px;
+   margin-left: 10px;
+ }
+
+ strong{
+   padding: 5px 10px;
+   font-size: 14px;
+   margin-left: 10px;
+ }
+ 
+ .username-input{
+   width: 50%;
+   height: 50px; /* Defina a altura desejada para a área de texto */
+   resize: none; /* Impede redimensionamento manual */
+   padding: 10px;
+   font-size: 16px;
+    border-radius: 15px;
+
  }
