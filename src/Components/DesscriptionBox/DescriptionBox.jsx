@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './DescriptionBox.css';
@@ -12,6 +13,10 @@ export const DescriptionBox = () => {
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [isRatingSubmitted, setIsRatingSubmitted] = useState(false);
+
+
+  
+
 
   useEffect(() => {
     // Filter comments based on product ID
@@ -42,6 +47,8 @@ export const DescriptionBox = () => {
     setRating(parseInt(event.target.value));
   };
 
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!username) {
@@ -55,15 +62,21 @@ export const DescriptionBox = () => {
       setCommentsList(updatedComments);
       setEditIndex(null);
     } else {
-      const newComment = { user: username, text: comment, rating: rating, productId: productId };
+      const currentDate = new Date().toISOString(); // Get current date and time in ISO format
+      const formattedDate = new Date().toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      });
+      const newComment = { user: username, text: comment, rating: rating, productId: productId, date: currentDate, formattedDate: formattedDate };
       const newComments = [...commentsList, newComment];
       setCommentsList(newComments);
       localStorage.setItem(`product_${productId}_comments`, JSON.stringify(newComments));
     }
     setComment('');
     setRating(0);
-  };
-
+  }
+  
   const handleEdit = (index) => {
     setComment(commentsList[index].text);
     setRating(commentsList[index].rating || 0); // Set the rating when editing
@@ -89,6 +102,8 @@ export const DescriptionBox = () => {
     localStorage.setItem(`product_${productId}_comments`, JSON.stringify(newComments));
     setRating(0);
   };
+
+
 
   return (
     <div className='descriptionbox'>
@@ -136,13 +151,24 @@ export const DescriptionBox = () => {
         <div className="comments-section">
           <h1> Comentários :</h1>
           
-          <ul className='coments-box'>
+          <ul className='comments-box'>
             {commentsList.map((comment, index) => (
-              <li key={index}>
-                <strong className='nome'>{comment.user}:</strong> {comment.text} {/* Display the comment */}
-                {comment.rating && <span> - Rating: {comment.rating}</span>} {/* Display the rating if it exists */}
-                <button onClick={() => handleEdit(index)} className='editar'>Edit</button>
-                <button onClick={() => handleDelete(index)} className='excluir'>Delete</button>
+              <li className='comment-item' key={index}>
+                <div className="user-comment">
+                  <strong className='user'>
+                    User: {comment.user}
+                    {comment.rating && <div>Rating: {comment.rating}</div>}
+                  </strong>
+                  <div className="comment-details">
+                    <p>Avaliado em: {comment. formattedDate}</p>
+                    {comment.verifiedPurchase && <p>Compra verificada</p>}
+                  </div>
+                  <div className="comment-text">{comment.text}</div>
+                  <div className="button-group">
+                    <button onClick={() => handleEdit(index)} className='editar'>Edit</button>
+                    <button onClick={() => handleDelete(index)} className='excluir'>Delete</button>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>

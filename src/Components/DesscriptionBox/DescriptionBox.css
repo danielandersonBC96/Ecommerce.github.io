@@ -131,6 +131,9 @@
 
  .user{
    margin-right: 10px;
+   display: flex;
+   margin: 10px;
+   gap: 10px;
  }
 
 
@@ -177,10 +180,48 @@
   border-radius: 15px;
  }
 
- .coments-box{
+ .comments-box{
   background-color:  white;
-  padding: 60px;
+  padding: 30px;
   border: solid 1px black;
   margin-top: 50px;
   border-radius: 15px;   
+   margin-left:  -250px;
+  margin: 190px;
  }
+
+ .nome{
+
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+
+ }
+
+ .text{
+  width: 100%;
+  max-width: 500px; /* ou qualquer valor que você preferir */
+  word-wrap: break-word;
+
+ }
+
+.box{
+
+  height: 150px;
+  display: flex ;
+  border-radius: 15px;
+  background-color: #f3eded;
+  
+}
+
+.comment-text {
+  word-wrap: break-word;
+  max-width: 50%; 
+  margin-bottom: 20px;/* Ou qualquer outra largura máxima desejada */
+}
+
+
+
+.comment-details{
+  margin-bottom: 10px;
+}
