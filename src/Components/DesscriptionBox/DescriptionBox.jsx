@@ -160,7 +160,7 @@ export const DescriptionBox = () => {
                     {comment.rating && <div>Rating: {comment.rating}</div>}
                   </strong>
                   <div className="comment-details">
-                    <p>Avaliado em: {comment. formattedDate}</p>
+                    <p>Avaliado em: {comment. formattedDate  }</p>
                     {comment.verifiedPurchase && <p>Compra verificada</p>}
                   </div>
                   <div className="comment-text">{comment.text}</div>

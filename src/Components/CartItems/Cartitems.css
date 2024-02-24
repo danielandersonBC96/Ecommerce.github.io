@@ -1,0 +1,32 @@
+.cartitems-table {
+    width: 100%;
+    border-collapse: collapse; /* Combina as bordas das células */
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 15px;
+ 
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.cartitems-row {
+    border-bottom: 1px solid  black; /* Adiciona uma borda inferior em cada linha */
+    gap: 10px;
+}
+
+.cartitems-row td, .cartitems-row th {
+    padding: 10px; /* Adiciona preenchimento interno nas células */
+    text-align: center; /* Centraliza o conteúdo */
+    gap: 10px ;
+}
+
+.carticon-product-icon {
+    max-width: 50px; /* Limita a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+.remove-icon {
+    cursor: pointer; /* Muda o cursor ao passar sobre o ícone */
+}
+
+/* Adicione outras regras de estilo conforme necessário */

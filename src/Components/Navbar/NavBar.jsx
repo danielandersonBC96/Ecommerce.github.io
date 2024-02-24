@@ -35,7 +35,7 @@ export const NavBar = () => {
                    <button> Login </button>   
                  </Link> 
 
-                 <Link>  
+                 <Link to="/cart">  
                    
                    <div className='cart' >
                         <img src={ cart_icon} alt=''/>

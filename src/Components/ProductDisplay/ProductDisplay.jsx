@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "./ProductDisplay.css";
 import star_icon from '../Assets/star_icon.png';
 import star_dull_icon from '../Assets/star_dull_icon.png'
 import cart_icon from '../Assets/cart_icon.png'
+import { ShopContext } from '../../Context/ShopContext';
 
 export const ProductDisplay = (props) => {
     const { product } = props;
-    console.log( product)
+    const { addTaCart} = useContext(ShopContext);
+
     return (
         <div className='productdisplay'>
             <div className="productdisplay-left">
@@ -15,10 +17,6 @@ export const ProductDisplay = (props) => {
                     <img className='productdisplay-main-img ' src={product.image} alt=''/> 
                    
                 </div>
-                
-
-               
-
              
             </div>
         
@@ -62,7 +60,7 @@ export const ProductDisplay = (props) => {
                 </div>
                 
                
-                <button className='buttondisplay'>Add to cart   <br/>   <img className='carticon' src={ cart_icon} alt=''/>   </button>
+                <button  onClick={() => {addTaCart(product.id)} }  className='buttondisplay'>Add to cart   <br/>   <img className='carticon' src={ cart_icon} alt=''/>   </button>
            
              
             </div> 
