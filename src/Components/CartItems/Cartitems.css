@@ -30,3 +30,89 @@
 }
 
 /* Adicione outras regras de estilo conforme necessário */
+
+.cartitem-down{
+    display: flex;
+    margin: 100px 0px ;
+}
+
+.cartitems-total{
+    flex:1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px;
+    gap:40px;
+
+
+}
+
+.cartitems-total-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+
+}
+
+.cartitems-total button {
+    width: 262px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background: #ff5a5a;
+    border-radius: 15px;
+   
+
+
+
+}
+
+
+.cartitems-promocode {
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .cartitems-promobox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-container {
+    width: 100%;
+    max-width: 300px; /* Ajuste o valor conforme necessário */
+    margin-bottom: 10px;
+  }
+  
+  .submit {
+    align-self: flex-end;
+  }
+  
+  /* Estilos para tornar o layout responsivo */
+  @media only screen and (min-width: 600px) {
+    .cartitems-promobox {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .input-container {
+      margin-bottom: 0;
+    }
+  }
+  
+  .cartitems-promobox input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    width: 303px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 15px;
+    border: solid 1px black;
+
+
+  }
