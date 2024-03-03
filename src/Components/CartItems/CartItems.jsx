@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { ShopContext } from '../../Context/ShopContext';
 import { jsPDF } from 'jspdf';
 import remove_icon from '../Assets/cart_cross_icon.png';
+import  JsBarcode from 'jsbarcode';
 import './Cartitems.css';
 
 export const CartItems = () => {
+
   const { getToTalCartAmount, all_product, cartItem, removeCartItem } = useContext(ShopContext);
+  const canvasRef = useRef(null)
+ 
   const [promoCode, setPromoCode] = useState('');
   const [userPhoneNumber, setUserPhoneNumber] = useState('');
   const [deliveryTime, setDeliveryTime] = useState('40 a 60 minutos');
@@ -20,10 +24,20 @@ export const CartItems = () => {
   const [nossoNumero, setNossoNumero] = useState('');
 
 
+
+  useEffect(() => {
+
+     generateBarcode();
+
+  } , [])
+
+
+
+
   const handleGerarBoleto = () => {
     // Criar um novo documento PDF
     const doc = new jsPDF('p', 'mm', 'a4');
-
+  
     // Definir variáveis para coordenadas e tamanhos
     const margin = 10;
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -33,76 +47,81 @@ export const CartItems = () => {
     const drawRectangle = (x, y, width, height) => {
       doc.rect(x, y, width, height);
     };
-
   
-
     // Função para adicionar uma seção ao boleto
     const addSection = (title, content, startX, startY, width, height, fontSize = 12) => {
       drawRectangle(startX, startY, width, height);
       doc.setFontSize(fontSize);
-      doc.setFillColor(230, 230, 230)
+      doc.setFillColor(230, 230, 230);
       doc.text(title, startX + margin / 2, startY + margin / 2);
       doc.setFontSize(10);
       doc.text(content, startX + margin / 2, startY + margin / 2 + 7);
     };
-
-    // Adicionar informações do boleto
-   // Adicionar informações do boleto
   
-   addSection('Banco:', '001-9', margin, y, 25, 15, 16);
-   addSection('Pagamento', '', margin + 25, y, pageWidth - margin * 2 - 25, 15);
-   y += 15;
-
-   addSection('Beneficiário:', 'CENTRO CULTURAL CHANNEL LTDA', margin, y,    pageWidth - margin * 2, 15 )
-   y += 15;
-
+    // Adicionar informações do boleto
+    addSection('Banco:', '001-9', margin, y, 25, 15, 16);
+    addSection('Pagamento', '', margin + 25, y, pageWidth - margin * 2 - 25, 15);
+    y += 15;
+  
+    addSection('Beneficiário:', 'CENTRO CULTURAL CHANNEL LTDA', margin, y, pageWidth - margin * 2, 15);
+    y += 15;
+  
     addSection('Endereço', 'Rua Principal, 123 - Bairro Centro - CEP: 12345-678 - Cidade/UF', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('Contato', '(00) 1234-5678   E-mail: contato@centroculturalchannel.com', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('Pagador', 'DANIEL ANDERSON BRANDAO CAMPOS', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('Endereço', 'Rua do Pagador, 456 - Bairro Pagador - CEP: 98765-432 - Cidade/UF', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('Data do Documento', '06/02/2024', margin, y, pageWidth / 2 - margin * 0.5, 15);
     addSection('Nosso Número', '00027159750000341145', pageWidth / 2 + margin / 2, y, pageWidth / 2 - margin * 1.5, 15);
     y += 15;
-
+  
     addSection('Vencimento', '06/02/2024', margin, y, pageWidth / 2 - margin * 0.5, 15);
     addSection('Valor', 'R$ 405,67', pageWidth / 2 + margin / 2, y, pageWidth / 2 - margin * 1.5, 15);
     y += 15;
-
+  
     addSection('Descrição dos Produtos', '', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('1. Produto A', 'R$ 100,00', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('2. Produto B', 'R$ 200,00', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('3. Produto C', 'R$ 105,67', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('4. Produto D', 'R$ 0,00', margin, y, pageWidth - margin * 2, 15);
     y += 15;
-
+  
     addSection('Linha Digitável', '00190.00009 02715.975005 00341.145175 7 96180000040567', margin, y, pageWidth - margin * 2, 15);
+    y += 25;
+  
+    // Adicionar o código de barras
+    const barcodeValue = '1234567890123'; // Substitua por um código de barras real associado ao pedido
+    JsBarcode(canvasRef.current, barcodeValue, {
+      format: 'CODE128',
+      displayValue: false,
+      width: 2,
+      height: 30,
+    });
+    const imageData = canvasRef.current.toDataURL('image/png');
+    doc.addImage(imageData, 'PNG', margin, y + 5, pageWidth - margin * 2, 25);
+    doc.setFontSize(12);
+    doc.text('Código de Barras', margin, y);
     y += 15;
-
-    addSection('Código de Barras', '[CÓDIGO DE BARRAS AQUI]', margin, y, pageWidth - margin * 2, 15);
-
- 
- 
-
+  
     // Salvar o documento
     doc.save('boleto.pdf');
   };
-    
+  
     
   const handleInputChange = (event) => {
     setPromoCode(event.target.value);
@@ -163,6 +182,16 @@ export const CartItems = () => {
     setShowModal(false);
   };
 
+  const generateBarcode = () => {
+    // Concatenar os dados do boleto para formar o código completo
+    const boletoData = '001-9'; // Exemplo de dados do boleto para o código de barras
+    JsBarcode(canvasRef.current, boletoData, {
+      format: 'CODE128', // Formato do código de barras
+      width: 2, // Largura das barras
+      height: 30, // Altura das barras
+    });
+  };
+
   return (
     <div className="cartitems">
       <h1>Cart Items</h1>
@@ -212,8 +241,9 @@ export const CartItems = () => {
           </div>
           <div className="promo-code">
           <div className="boleto-form">
-            <h2>Gerar Boleto</h2>
-          
+            <h2> Boleto </h2>
+           
+            <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
             <button onClick={ handleGerarBoleto}>Gerar Boleto</button>
           </div>
           </div>
