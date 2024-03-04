@@ -32,7 +32,7 @@ export const CartItems = () => {
   } , [])
 
 
-
+ 
 
   const handleGerarBoleto = () => {
     // Criar um novo documento PDF
@@ -44,85 +44,112 @@ export const CartItems = () => {
     let y = margin;
   
     // Função para desenhar um retângulo
+    
     const drawRectangle = (x, y, width, height) => {
       doc.rect(x, y, width, height);
-    };
-  
+  };
+
+    
     // Função para adicionar uma seção ao boleto
+  
     const addSection = (title, content, startX, startY, width, height, fontSize = 12) => {
-      drawRectangle(startX, startY, width, height);
+      drawRectangle(startX, startY, width, height); // Chamar drawRectangle antes de adicionar a seção
       doc.setFontSize(fontSize);
       doc.setFillColor(230, 230, 230);
       doc.text(title, startX + margin / 2, startY + margin / 2);
       doc.setFontSize(10);
       doc.text(content, startX + margin / 2, startY + margin / 2 + 7);
-    };
+  };
+
+    const calcularDataVencimento = () => {
+      const dataAtual = new Date();
+      const dataVencimento = new Date(dataAtual);
+      dataVencimento.setDate(dataAtual.getDate() + 30); // Adiciona 30 dias à data atual
+      const dia = dataVencimento.getDate().toString().padStart(2, '0'); // Dia com zero à esquerda, se necessário
+      const mes = (dataVencimento.getMonth() + 1).toString().padStart(2, '0'); // Mês com zero à esquerda, se necessário
+      const ano = dataVencimento.getFullYear();
+      return `${dia}/${mes}/${ano}`;
+  };
+
+  // Função para obter a data atual no formato DD/MM/AAAA
+  const obterDataAtual = () => {
+      const dataAtual = new Date();
+      const dia = dataAtual.getDate().toString().padStart(2, '0'); // Dia com zero à esquerda, se necessário
+      const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0'); // Mês com zero à esquerda, se necessário
+      const ano = dataAtual.getFullYear();
+      return `${dia}/${mes}/${ano}`;
+  };
+
+
+  // Adicionar informações do boleto
+  addSection('Banco:', '001-9', margin, y, 25, 15, 16);
+  addSection('Pagamento', '', margin + 25, y, pageWidth - margin * 2 - 25, 15);
+  y += 15;
+
+  addSection('Beneficiário:', 'CENTRO CULTURAL CHANNEL LTDA', margin, y, pageWidth - margin * 2, 15);
+  y += 15;
+
+  addSection('Endereço', 'Rua Principal, 123 - Bairro Centro - CEP: 12345-678 - Cidade/UF', margin, y, pageWidth - margin * 2, 15);
+  y += 15;
+
+  addSection('Contato', '(00) 1234-5678   E-mail: contato@centroculturalchannel.com', margin, y, pageWidth - margin * 2, 15);
+  y += 15;
+
+  addSection('Pagador', 'DANIEL ANDERSON BRANDAO CAMPOS', margin, y, pageWidth - margin * 2, 15);
+  y += 15;
+
+  addSection('Endereço', 'Rua do Pagador, 456 - Bairro Pagador - CEP: 98765-432 - Cidade/UF', margin, y, pageWidth - margin * 2, 15);
+  y += 15;
+
+  addSection('Data do Documento', obterDataAtual(), margin, y, pageWidth / 2 - margin * 0.5, 15);
+  addSection('Nosso Número', '00027159750000341145', pageWidth / 2 + margin / 2, y, pageWidth / 2 - margin * 1.5, 15);
+  y += 15;
+
+  addSection('Vencimento', calcularDataVencimento(), margin, y, pageWidth / 2 - margin * 0.5, 15);
+
+  const cartItems = all_product.filter(product => cartItem[product.id] > 0);
+  cartItems.forEach(product => {
+      // Calcular o preço total do produto
+      const totalPrice = product.new_price * cartItem[product.id];
+      
+      // Adicionar o produto abaixo do campo "Vencimento"
+      addSection(`${product.name}`, '', margin, y + 15, pageWidth - margin * 2, 15);
+      y += 15;
   
-    // Adicionar informações do boleto
-    addSection('Banco:', '001-9', margin, y, 25, 15, 16);
-    addSection('Pagamento', '', margin + 25, y, pageWidth - margin * 2 - 25, 15);
-    y += 15;
-  
-    addSection('Beneficiário:', 'CENTRO CULTURAL CHANNEL LTDA', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('Endereço', 'Rua Principal, 123 - Bairro Centro - CEP: 12345-678 - Cidade/UF', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('Contato', '(00) 1234-5678   E-mail: contato@centroculturalchannel.com', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('Pagador', 'DANIEL ANDERSON BRANDAO CAMPOS', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('Endereço', 'Rua do Pagador, 456 - Bairro Pagador - CEP: 98765-432 - Cidade/UF', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('Data do Documento', '06/02/2024', margin, y, pageWidth / 2 - margin * 0.5, 15);
-    addSection('Nosso Número', '00027159750000341145', pageWidth / 2 + margin / 2, y, pageWidth / 2 - margin * 1.5, 15);
-    y += 15;
-  
-    addSection('Vencimento', '06/02/2024', margin, y, pageWidth / 2 - margin * 0.5, 15);
-    addSection('Valor', 'R$ 405,67', pageWidth / 2 + margin / 2, y, pageWidth / 2 - margin * 1.5, 15);
-    y += 15;
-  
-    addSection('Descrição dos Produtos', '', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('1. Produto A', 'R$ 100,00', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('2. Produto B', 'R$ 200,00', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('3. Produto C', 'R$ 105,67', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('4. Produto D', 'R$ 0,00', margin, y, pageWidth - margin * 2, 15);
-    y += 15;
-  
-    addSection('Linha Digitável', '00190.00009 02715.975005 00341.145175 7 96180000040567', margin, y, pageWidth - margin * 2, 15);
-    y += 25;
-  
-    // Adicionar o código de barras
-    const barcodeValue = '1234567890123'; // Substitua por um código de barras real associado ao pedido
-    JsBarcode(canvasRef.current, barcodeValue, {
+      // Adicionar o valor ao lado do campo "Vencimento"
+      addSection(`R$ ${totalPrice.toFixed(2)}`, '', pageWidth / 2 + margin / 2, y - 15, pageWidth / 2 - margin * 1.5, 15);
+      y += 15;
+  });
+  addSection('Descrição dos Produtos', '', margin, y, pageWidth - margin * 2, 15);
+  y += 15;
+
+  addSection('Linha Digitável', '00190.00009 02715.975005 00341.145175 7 96180000040567', margin, y, pageWidth - margin * 2, 15);
+  y += 25;
+
+  // Adicionar o código de barras
+  const barcodeValue = '1234567890123'; // Substitua por um código de barras real associado ao pedido
+  JsBarcode(canvasRef.current, barcodeValue, {
       format: 'CODE128',
       displayValue: false,
       width: 2,
       height: 30,
-    });
-    const imageData = canvasRef.current.toDataURL('image/png');
-    doc.addImage(imageData, 'PNG', margin, y + 5, pageWidth - margin * 2, 25);
-    doc.setFontSize(12);
-    doc.text('Código de Barras', margin, y);
-    y += 15;
+  });
+  const imageData = canvasRef.current.toDataURL('image/png');
+  doc.addImage(imageData, 'PNG', margin, y + 5, pageWidth - margin * 2, 25);
+  doc.setFontSize(12);
+  doc.text('Código de Barras', margin, y);
+  y += 15;
+
+  // Salvar o documento
+  doc.save('boleto.pdf');
+};
+
+
+
+
+
   
-    // Salvar o documento
-    doc.save('boleto.pdf');
-  };
-  
-    
+ 
   const handleInputChange = (event) => {
     setPromoCode(event.target.value);
   };
@@ -135,6 +162,8 @@ export const CartItems = () => {
       alert('Código promocional inválido!');
     }
   };
+
+
   const sendWhatsAppMessage = () => {
     // Filtra apenas os produtos que estão no carrinho
     const cartItems = all_product.filter(product => cartItem[product.id] > 0);
