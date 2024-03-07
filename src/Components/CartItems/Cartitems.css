@@ -59,13 +59,17 @@
     height: 70px;
     outline: none;
     border: none;
-    background: #ff5a5a;
+    background:  black;
     border-radius: 15px;
    
-
-
-
 }
+
+.botao-promo{
+  margin-left: 20px;
+}
+
+
+
 
 
 .cartitems-promocode {
@@ -155,15 +159,174 @@
 }
 
 button {
-  background-color: #007bff;
+  background-color: black;
   color: #fff;
   border: none;
   padding: 15px 30px;
-  border-radius: 6px;
+  border-radius: 15px ;
   cursor: pointer;
   transition: background-color 0.3s ease;
+ 
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color:  white;
+  color: black;
+  border:  solid 1px black;
 }
+
+.name-boleto,
+.email,
+.endereço,
+.numero {
+  width: 100%; /* Ocupa toda a largura disponível */
+  padding: 20px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  margin-bottom: 10px ;
+}
+
+.botão-boleto{
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.cartitems-down {
+  display: flex;
+}
+
+.cartitems-total {
+  margin-right: 20px;
+}
+
+.credit-card-form {
+  width: 500px;
+   padding: 150px;
+  height: 400px;
+  max-width: 400px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: rgb(0, 0, 0);
+  border-radius: 15px;
+  border: solid 1px white;
+  color: #fff;
+}
+
+.credit-card-input {
+  width: 118%;
+  padding: 30px;
+  margin-bottom: 15px;
+  border: 1px solid  white;
+  border-radius: 15px;
+  box-sizing: border-box;
+  
+
+}
+
+.credit-card-input:focus {
+  outline: none;
+  border-color: black; 
+  border:  solid 1px black;/* Cor da borda ao focar */
+}
+
+.credit-card-input.error {
+  border-color: #dc3545; /* Cor da borda em caso de erro */
+}
+
+.credit-card-label {
+  font-weight: bold;
+  border-radius: 15px;
+  
+}
+
+.credit-card-expiry-cvv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.credit-card-expiry,
+.credit-card-cvv {
+  width: calc(150% - 10px);
+
+
+}
+
+/* Estilizando a mensagem de erro */
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.credit-card-button {
+  background-color:  rgb(0, 0, 0);
+  color: #fff;
+  padding: 10px 20px;
+  border:  solid 1px white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 50px;
+  margin-top: 20px;
+
+}
+
+.credit-card-button:hover {
+  background-color: white;
+}
+.cartitems-promocode {
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cartitems-promobox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  width: 100%;
+  max-width: 300px; /* Ajuste o valor conforme necessário */
+  margin-bottom: 10px;
+}
+
+.submit {
+  align-self: flex-end;
+}
+
+/* Estilos para tornar o layout responsivo */
+@media only screen and (min-width: 600px) {
+  .cartitems-promobox {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .input-container {
+    margin-bottom: 0;
+  }
+}
+
+.cartitems-promobox input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  width: 303px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 15px;
+  border: solid 1px black;
+
+
+}
+.form-button-enviar button {
+  padding: 10px;
+  margin: 0 10px 10px 0; /* Adiciona margem à direita e abaixo de cada botão */
+}
+

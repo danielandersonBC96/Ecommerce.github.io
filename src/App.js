@@ -6,7 +6,7 @@ import { ShopCategory }  from './Pages/ShopCategory';
 import { Product} from './Pages/Product';
 import { Cart } from './Pages/Cart';
 import { LoginSignup } from './Pages/LoginSignup';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Footer } from './Components/Footer/Footer';
 import man_banner  from './Components/Assets/banner_mens.png';
 import women_banner from  './Components/Assets/banner_women.png';
@@ -35,7 +35,7 @@ function App() {
         
              
          
-        <Route path='/Login' element={<LoginSignup/>}/>
+        <Route path='/Login' element={<LoginSignup/>}  component={LoginSignup}  />
         <Route path='/cart' element={<Cart/>}/>
        </Routes>
       <Footer/>
