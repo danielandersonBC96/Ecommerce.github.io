@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "boleto-pdf": "^0.4.0",
     "creditcards": "^4.2.0",
+    "firebase": "^10.8.1",
     "jsbarcode": "^3.11.6",
     "jspdf": "^2.5.1",
     "qrcode.react": "^3.1.0",
