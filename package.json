@@ -17,6 +17,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "dotenv": "^16.4.5",
     "webpack": "^5.90.3"
   }
 }

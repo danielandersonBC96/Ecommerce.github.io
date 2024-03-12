@@ -1,39 +1,58 @@
-
 import './App.css';
+import { useState, useEffect } from 'react';
 import { NavBar } from './Components/Navbar/NavBar';
 import { Shop } from './Pages/Shop';
 import { ShopCategory }  from './Pages/ShopCategory';
-import { Product} from './Pages/Product';
+import { Product } from './Pages/Product';
 import { Cart } from './Pages/Cart';
 import { LoginSignup } from './Pages/LoginSignup';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Removemos o useNavigate
 import { Footer } from './Components/Footer/Footer';
-import man_banner  from './Components/Assets/banner_mens.png';
-import women_banner from  './Components/Assets/banner_women.png';
+import { ProfileAdmin } from './Pages/ProfileAdmin';
+import { ProfileUser } from './Pages/ProfileUser';
+import man_banner from './Components/Assets/banner_mens.png';
+import women_banner from './Components/Assets/banner_women.png';
 import kid_banner from './Components/Assets/banner_kids.png';
 
-
 function App() {
+  const [userType, setUserType] = useState('');
+
+  useEffect(() => {
+    // Simular a lógica de determinação do tipo de usuário (admin ou user)
+    // Aqui você pode implementar a lógica real para verificar o tipo de usuário
+    // e definir o tipo de usuário com base na autenticação do Firebase ou outra lógica de autenticação
+    // Por enquanto, estamos apenas simulando isso com um valor fixo
+    const isAdmin = true; // Simula que o usuário logado é um admin
+    setUserType(isAdmin ? 'admin' : 'user');
+  }, []);
+
   return (
     <div className="App">
-     <BrowserRouter>
-      <NavBar/>
-       <Routes>
-        <Route  path='/'  element={ <Shop/> }/>
-        <Route  path='/mens' element={<ShopCategory banner={man_banner}  category='mens'/>}  />
-        <Route  path='/womens' element={<ShopCategory  banner={women_banner}category='womens'/>}  />
-        <Route  path='/kids' element={ <ShopCategory   banner={kid_banner}   category='kids'/>} />
-        <Route path='/product' element={<Product/>}>
-             <Route path=':productId'element={<Product/>}/> 
-          </Route>            
-        <Route path='/Login' element={<LoginSignup/>}  />
-        <Route path='/cart' element={<Cart/>}/>
-       </Routes>
-      <Footer/>
-     </BrowserRouter>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<Shop />} />
+          <Route path='/mens' element={<ShopCategory banner={man_banner} category='mens' />} />
+          <Route path='/womens' element={<ShopCategory banner={women_banner} category='womens' />} />
+          <Route path='/kids' element={<ShopCategory banner={kid_banner} category='kids' />} />
+          <Route path='/product' element={<Product />}>
+            <Route path=':productId' element={<Product />} />
+          </Route>
+          <Route path='/login' element={<LoginSignup />} />
+          <Route path='/cart' element={<Cart />} />
+          {/* Rota condicional com base no tipo de usuário */}
+          {userType === 'admin' ? (
+            <Route path='/profile' element={<ProfileAdmin />} />
+          ) : (
+            <Route path='/profile' element={<ProfileUser />} />
+          )}
+          {/* Redireciona para a página de login se o tipo de usuário não estiver definido */}
+          {userType === '' && <Route path='/login' element={<LoginSignup />} />}
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
- 
