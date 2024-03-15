@@ -5,11 +5,15 @@ import remove_icon from '../Assets/cart_cross_icon.png';
 import  JsBarcode from 'jsbarcode';
 import creditcards from 'creditcards';
 import './Cartitems.css';
+import { useNavigate } from 'react-router-dom'
 
 export const CartItems = () => {
 
+
   const { getToTalCartAmount, all_product, cartItem, removeCartItem } = useContext(ShopContext);
-  const canvasRef = useRef(null)
+  const navigate = useNavigate();
+
+ 
  
   const [promoCode, setPromoCode] = useState('');
   const [userPhoneNumber, setUserPhoneNumber] = useState('');
@@ -26,7 +30,7 @@ export const CartItems = () => {
   const [ contatoUsario , setEmailUsuario ] = useState('');
   const [endereçoUsuario , setEndereçoUsuario ] = useState('');
   const [numeroUsuario , setNumeroUsuario ] = useState('');
-  
+  const canvasRef = useRef(null);
   const [isValido, setIsValido] = useState(null);
   const [cvv, setCvv] = useState('');
   const [erro, setErro] = useState('')
@@ -86,7 +90,17 @@ export const CartItems = () => {
   } , [])
 
 
- 
+ const paymentButton = () => {
+
+  console.log('processando pagamento ')
+
+  const totalAmount = getToTalCartAmount();
+  const products = all_product.filter(produc => cartItem[produc.id]> 0)
+
+   navigate('/produtos-comprados')
+ }
+
+
 
   const handleGerarBoleto = () => {
     if (nomeUsuario.trim() === '' || contatoUsario.trim() === '' || endereçoUsuario.trim() === '' || numeroUsuario.trim() === '') {
@@ -213,6 +227,9 @@ export const CartItems = () => {
     }
   };
 
+
+  
+  
 
   const sendWhatsAppMessage = () => {
     // Filtra apenas os produtos que estão no carrinho
@@ -385,6 +402,7 @@ export const CartItems = () => {
               <button className="whatsappbutton" type="button" onClick={() => sendWhatsAppMessage()}>
                 {loading ? 'Enviando...' : 'Enviar via WhatsApp'}
               </button>
+              <button type="button" onClick={paymentButton}>Realizar Pagamento</button>
             </form>
             {/* Modal de carregamento */}
            

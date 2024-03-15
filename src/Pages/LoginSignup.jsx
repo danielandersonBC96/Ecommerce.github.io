@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import '../Css/login.css';
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 import { RingLoader } from 'react-spinners';
-
+import { ShopContext } from '../Context/ShopContext';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -30,9 +30,16 @@ const auth = getAuth(app);
 export const LoginSignup = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [loginData, setLoginData] = useState({ email: '', password: '' });
+
   const [rememberMe, setRememberMe] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false); // Estado para controlar se o usuário está autenticado
-  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
+  const [loading, setLoading] = useState(false); // Estado para controlar o carregamento
+  const { getToTalCartAmount, all_product, cartItem, removeCartItem, addToCart } = useContext(ShopContext);
+
+  
+
+
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -98,8 +105,9 @@ export const LoginSignup = () => {
     return users.find(user => user.email === email);
   };
 
-  const handleLogin = () => {
-    setLoading(true); // Define o estado de carregamento como verdadeiro ao pressionar o botão de login
+
+  const handleLogin = (itemId) => {
+    setLoading(true); 
     const { email, password } = loginData;
     const user = gerUserByEmail(email);
   
@@ -107,21 +115,28 @@ export const LoginSignup = () => {
       if (rememberMe) {
         localStorage.setItem('storedEmail', email);
         localStorage.setItem('storedRememberMe', true);
+        localStorage.setItem('userType', user.userType);
       } else {
         localStorage.removeItem('storedEmail');
         localStorage.removeItem('storedRememberMe');
+        localStorage.removeItem('userType');
       }
   
       if (user.userType === 'admin') {
         navigate('/cadastrar-produtos');
       } else {
         navigate('/produtos-comprados');
+        
+        // Chama a função addToCart passando o ID do usuário
+        addToCart(user.id, itemId);
       }
     } else {
       alert('Invalid email or password');
     }
-    setLoading(false); // Define o estado de carregamento como falso após o login ser concluído
+    setLoading(false); 
   };
+  
+  
   
   return (
     <div className="loginsignup">

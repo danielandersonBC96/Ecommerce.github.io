@@ -18,10 +18,7 @@ function App() {
   const [userType, setUserType] = useState('');
 
   useEffect(() => {
-    // Simular a lógica de determinação do tipo de usuário (admin ou user)
-    // Aqui você pode implementar a lógica real para verificar o tipo de usuário
-    // e definir o tipo de usuário com base na autenticação do Firebase ou outra lógica de autenticação
-    // Por enquanto, estamos apenas simulando isso com um valor fixo
+    
     const isAdmin = true; // Simula que o usuário logado é um admin
     setUserType(isAdmin ? 'admin' : 'user');
   }, []);

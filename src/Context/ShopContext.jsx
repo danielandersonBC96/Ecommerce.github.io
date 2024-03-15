@@ -15,13 +15,20 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
   // Corrigido o nome da variável para 'contextValue'
   const [cartItem, setCartItems] = useState(getDefaultCart());
+  const [user,setUser] = useState(null)
 
-  const addTaCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    console.log(cartItem);
-
-  }
-
+  const addToCart = (userId, itemId) => {
+    if (userId) {
+      // Adiciona o produto ao carrinho com o ID do usuário
+      setCartItems(prevCartItems => ({ ...prevCartItems, [itemId]: prevCartItems[itemId] + 1, userId: userId }));
+      // Exibe um alerta indicando que o item foi adicionado ao carrinho
+      alert('Item adicionado ao carrinho!');
+    } else {
+      // Exibe um alerta informando que o usuário precisa fazer login para adicionar itens ao carrinho
+      alert('Faça login para adicionar itens ao carrinho.');
+    }
+  };
+  
   //Logica do carrinho 
   const getToTalCartAmount = () => {
     let totalAmount = 0;
@@ -54,7 +61,7 @@ const  getToTalCartItems = () => {
   }
 
   // Definindo o valor do contexto
-  const contextValue = {   getToTalCartItems,getToTalCartAmount ,all_product, cartItem, addTaCart, removeCartItem };
+  const contextValue = {   getToTalCartItems,getToTalCartAmount ,all_product, cartItem, addToCart, removeCartItem };
 
   return (
     <ShopContext.Provider value={contextValue}>
