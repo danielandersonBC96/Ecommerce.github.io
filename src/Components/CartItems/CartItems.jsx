@@ -91,8 +91,9 @@ export const CartItems = () => {
   } , [])
 
 
+  
   const paymentButton = () => {
-    console.log('processando pagamento ');
+    console.log('Processando pagamento ');
   
     // Suponha que você tenha o e-mail do usuário logado armazenado em uma variável currentUserEmail
     const currentUserEmail = 'progamin@example.com';
@@ -100,13 +101,31 @@ export const CartItems = () => {
     const totalAmount = getToTalCartAmount();
     const products = all_product.filter(product => cartItem[product.id] > 0);
   
+    // Verifique se o usuário está logado antes de prosseguir com a compra
+    if (!currentUserEmail) {
+      console.error('Nenhum usuário logado.');
+      return;
+    }
+  
     // Crie um objeto representando os detalhes da compra
     const purchaseDetails = {
       userEmail: currentUserEmail, // Associe a compra ao e-mail do usuário logado
-      items: products.map(product => ({ id: product.id, quantity: cartItem[product.id] })),
+      items: products.map(product => ({
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        category: product.category,
+        new_price: product.new_price,
+        quantity: cartItem[product.id]
+      })),
       totalAmount: totalAmount,
       // Adicione mais detalhes da compra conforme necessário
     };
+    // Valide os dados antes de armazená-los no localStorage
+    if (!purchaseDetails.items.length || purchaseDetails.totalAmount <= 0) {
+      console.error('Detalhes da compra inválidos.');
+      return;
+    }
   
     // Observe que o item está sendo armazenado no localStorage com a chave do e-mail do usuário
     localStorage.setItem(currentUserEmail, JSON.stringify(purchaseDetails));

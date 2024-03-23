@@ -1,44 +1,57 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { ShopContext } from '../../Context/ShopContext';
-import remove_icon from '../Assets/cart_cross_icon.png';
+import React, { useState, useEffect } from 'react';
+import './Pageuser.css'; // Importe seu arquivo CSS
 
-const UserPage = () => {
-  const { all_product } = useContext(ShopContext);
+export const UserPage = () => {
   const [userPurchases, setUserPurchases] = useState([]);
 
   useEffect(() => {
-    // Obtém o email do usuário atual (substitua esta lógica com a maneira correta de obter o email do usuário)
     const currentUserEmail = 'progamin@example.com';
-
-    // Busca as compras do usuário no localStorage usando o email como chave
-    const purchases = JSON.parse(localStorage.getItem(currentUserEmail)) || [];
-
-    // Atualiza o estado com as compras do usuário
-    setUserPurchases(purchases);
-  }, []); // Executa apenas uma vez ao montar o componente
+    const purchaseData = localStorage.getItem(currentUserEmail);
+    
+    if (purchaseData) {
+      try {
+        const purchases = JSON.parse(purchaseData);
+        setUserPurchases([purchases]);
+      } catch (error) {
+        console.error('Erro ao analisar os dados do localStorage:', error);
+      }
+    } else {
+      console.error('Dados de compra não encontrados no localStorage.');
+    }
+  }, []);
 
   return (
-    <div>
-      <h2>Minhas Compras</h2>
-      {userPurchases.map((purchase, index) => (
-        <div key={index}>
-          <p>Compra {index + 1}:</p>
-          <p>Total: R$ {purchase.totalAmount.toFixed(2)}</p>
-          <ul>
-            {purchase.items.map((item, itemIndex) => {
-              const product = all_product.find(product => product.id === item.id);
-              return (
-                <li key={itemIndex}>
-                  {product.name} - Quantidade: {item.quantity}
-                </li>
-              );
-            })}
-          </ul>
-          <hr />
+    <div className="purchase-container">
+      {userPurchases.map((purchase, purchaseIndex) => (
+        <div key={purchaseIndex} className="purchase">
+          <h3>Compra {purchaseIndex + 1}</h3>
+          <div className="table-responsive"> {/* Container para tornar a tabela responsiva */}
+            <table className="purchase-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Categoria</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th>Imagem</th>
+                </tr>
+              </thead>
+              <tbody>
+                {purchase.items.map((item, itemIndex) => (
+                  <tr key={itemIndex}>
+                    <td>{item.name}</td>
+                    <td>{item.category}</td>
+                    <td>R$ {item.new_price.toFixed(2)}</td>
+                    <td>{item.quantity}</td>
+                    <td><img src={item.image} alt={item.name} className="product-image" /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="total">Total: R$ {purchase.totalAmount.toFixed(2)}</p>
         </div>
       ))}
     </div>
   );
 };
-
-export default UserPage;

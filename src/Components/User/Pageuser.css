@@ -1,0 +1,50 @@
+.purchase-table th,
+.purchase-table td {
+  padding: 42px 20px; /* Altere o valor do padding conforme necessário */
+  gap:30px
+
+}
+
+.purchase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.purchase {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 200%;
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.purchase-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.purchase-table th {
+  background-color: #f2f2f2;
+}
+
+.purchase-table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.total {
+  margin-top: 16px;
+  font-weight: bold;
+}
+.product-image{
+    width: 100px;
+    height: 100px;
+}
