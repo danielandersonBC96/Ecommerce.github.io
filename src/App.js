@@ -1,12 +1,13 @@
+
 import './App.css';
 import { useState, useEffect } from 'react';
 import { NavBar } from './Components/Navbar/NavBar';
 import { Shop } from './Pages/Shop';
-import { ShopCategory }  from './Pages/ShopCategory';
+import { ShopCategory } from './Pages/ShopCategory';
 import { Product } from './Pages/Product';
 import { Cart } from './Pages/Cart';
 import { LoginSignup } from './Pages/LoginSignup';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Removemos o useNavigate
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'; // Importe Navigate
 import { Footer } from './Components/Footer/Footer';
 import { ProfileAdmin } from './Pages/ProfileAdmin';
 import { ProfileUser } from './Pages/ProfileUser';
@@ -18,8 +19,8 @@ function App() {
   const [userType, setUserType] = useState('');
 
   useEffect(() => {
-    
-    const isAdmin = true; // Simula que o usuário logado é um admin
+    // Simula se o usuário está logado como admin ou não
+    const isAdmin = true;
     setUserType(isAdmin ? 'admin' : 'user');
   }, []);
 
@@ -41,10 +42,10 @@ function App() {
           {userType === 'admin' ? (
             <Route path='/profile' element={<ProfileAdmin />} />
           ) : (
-            <Route path='/profile' element={<ProfileUser />} />
+            <Route path='/produtos-comprados' element={<ProfileUser />} />
           )}
           {/* Redireciona para a página de login se o tipo de usuário não estiver definido */}
-          {userType === '' && <Route path='/login' element={<LoginSignup />} />}
+          {userType === '' && <Route path='*' element={<Navigate to='/login' />} />}
         </Routes>
         <Footer />
       </BrowserRouter>

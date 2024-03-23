@@ -22,7 +22,6 @@ const spinnerStyles = {
   margin: '0 auto'
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -30,114 +29,101 @@ const auth = getAuth(app);
 export const LoginSignup = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [loginData, setLoginData] = useState({ email: '', password: '' });
-
   const [rememberMe, setRememberMe] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false); // Estado para controlar se o usuário está autenticado
-  const [loading, setLoading] = useState(false); // Estado para controlar o carregamento
-  const { getToTalCartAmount, all_product, cartItem, removeCartItem, addToCart } = useContext(ShopContext);
+  const [loading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  
-
-
-  
+  const { addToCart } = useContext(ShopContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('storedEmail');
     const storedRememberMe = localStorage.getItem('storedRememberMe');
-
+  
     if (storedEmail && storedRememberMe) {
       setLoginData({ ...loginData, email: storedEmail });
       setRememberMe(true);
     }
-
-    // Verificar se o usuário está autenticado ao carregar o componente
+  }, [loginData]); // Adicione loginData como uma dependência
+  
+  useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        setLoggedIn(true); // Define o estado como autenticado se o usuário estiver autenticado
+        setLoggedIn(true);
       } else {
-        setLoggedIn(false); // Define o estado como não autenticado se o usuário não estiver autenticado
+        setLoggedIn(false);
       }
-      setLoading(false); // Define o estado de carregamento como falso quando o componente é montado
+      setLoading(false);
     });
 
-    return () => unsubscribe(); // Limpar o observador de autenticação ao desmontar o componente
+    return () => unsubscribe();
   }, []);
 
   const openModal = () => {
     setModalIsOpen(true);
   };
-  
-  const createUserAccount = (email) => {
-    createUserWithEmailAndPassword(auth, email, 'senha_aleatoria')
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log('User account created:', user);
-        // Adicione o código para redirecionar o usuário ou fornecer feedback adequado aqui
-      })
-      .catch((error) => {
-        console.error('Error creating user account:', error);
-        // Adicione o código para fornecer feedback adequado ao usuário aqui
-      });
+
+  const createUserAccount = async (email) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, 'senha_aleatoria');
+      const user = userCredential.user;
+      console.log('User account created:', user);
+    } catch (error) {
+      console.error('Error creating user account:', error);
+    }
   };
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      setLoading(true); // Define o estado de carregamento como verdadeiro
+      setLoading(true);
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       console.log('Logged in user:', user);
-      // Aqui você pode criar a conta do usuário no Firebase Auth
       createUserAccount(user.email);
     } catch (error) {
       console.error('Error signing in with Google:', error);
     } finally {
-      setLoading(false); // Define o estado de carregamento como falso após o login ser concluído
+      setLoading(false);
     }
   };
 
   const gerUserByEmail = (email) => {
     const users = [
-      { email: 'progamin@example.com', password: 'userpassword', userType: 'User' },
-      { email: 'admin@example.com', password: 'adminpassword', userType: 'admin' }
+      { email: 'progamin@example.com', password: 'userpassword', userType: 'User', id: '1' },
+      { email: 'admin@example.com', password: 'adminpassword', userType: 'admin', id: '2' }
     ];
     return users.find(user => user.email === email);
   };
 
-
-  const handleLogin = (itemId) => {
-    setLoading(true); 
+  const handleLogin = async (itemId) => {
+    setLoading(true);
     const { email, password } = loginData;
     const user = gerUserByEmail(email);
-  
+
+
     if (user && user.password === password) {
       if (rememberMe) {
         localStorage.setItem('storedEmail', email);
         localStorage.setItem('storedRememberMe', true);
-        localStorage.setItem('userType', user.userType);
       } else {
         localStorage.removeItem('storedEmail');
         localStorage.removeItem('storedRememberMe');
-        localStorage.removeItem('userType');
       }
-  
+
       if (user.userType === 'admin') {
         navigate('/cadastrar-produtos');
       } else {
+        // Aqui você associaria a compra ao usuário logado antes de redirecionar
+        await addToCart(user.id, itemId);
         navigate('/produtos-comprados');
-        
-        // Chama a função addToCart passando o ID do usuário
-        addToCart(user.id, itemId);
       }
     } else {
       alert('Invalid email or password');
     }
-    setLoading(false); 
+    setLoading(false);
   };
-  
-  
-  
+
   return (
     <div className="loginsignup">
       {loading ? (
@@ -147,8 +133,8 @@ export const LoginSignup = () => {
         </div>
       ) : (
         <div className="loginsignup-container">
-          <h1>{loggedIn ? 'Welcome back!' : 'Sign Up'}</h1> {/* Renderiza uma mensagem diferente se o usuário estiver autenticado */}
-          {loggedIn ? null : ( // Renderiza os campos de entrada apenas se o usuário não estiver autenticado
+          <h1>{loggedIn ? 'Welcome back!' : 'Sign Up'}</h1>
+          {!loggedIn && (
             <div className="loginsignup-fields">
               <input
                 type="email"
@@ -172,12 +158,12 @@ export const LoginSignup = () => {
               </label>
             </div>
           )}
-  
-          <button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button> {/* Renderiza um botão diferente se o usuário estiver autenticado */}
-          <button onClick={loggedIn ? null : handleLogin}>{loggedIn ? 'Continue' : 'Login'}</button> {/* Renderiza um botão diferente se o usuário estiver autenticado */}
+
+<button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button>
+          <button onClick={loggedIn ? null : () => handleLogin('itemId')}>{loggedIn ? 'Continue' : 'Login'}</button>
         </div>
       )}
-  
+
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} contentLabel="Login Modal">
         <h2>Choose your login option</h2>
         <button onClick={handleGoogleLogin}>Sign in with Google</button>
@@ -185,6 +171,4 @@ export const LoginSignup = () => {
       </Modal>
     </div>
   );
-  
-  
 };

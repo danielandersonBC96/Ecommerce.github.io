@@ -10,10 +10,9 @@ import { useNavigate } from 'react-router-dom'
 export const CartItems = () => {
 
 
-  const { getToTalCartAmount, all_product, cartItem, removeCartItem } = useContext(ShopContext);
+  const { getToTalCartAmount, all_product, cartItem, removeCartItem , userId} = useContext(ShopContext);
   const navigate = useNavigate();
 
- 
  
   const [promoCode, setPromoCode] = useState('');
   const [userPhoneNumber, setUserPhoneNumber] = useState('');
@@ -36,6 +35,8 @@ export const CartItems = () => {
   const [erro, setErro] = useState('')
   const [numeroCartao, setNumeroCartao] = useState('');
   const [dataValidade, setDataValidade] = useState('')
+ 
+
   const handleNumeroCartaoChange = (event) => {
 
 
@@ -90,17 +91,34 @@ export const CartItems = () => {
   } , [])
 
 
- const paymentButton = () => {
+  const paymentButton = () => {
+    console.log('processando pagamento ');
+  
+    // Suponha que você tenha o e-mail do usuário logado armazenado em uma variável currentUserEmail
+    const currentUserEmail = 'progamin@example.com';
+  
+    const totalAmount = getToTalCartAmount();
+    const products = all_product.filter(product => cartItem[product.id] > 0);
+  
+    // Crie um objeto representando os detalhes da compra
+    const purchaseDetails = {
+      userEmail: currentUserEmail, // Associe a compra ao e-mail do usuário logado
+      items: products.map(product => ({ id: product.id, quantity: cartItem[product.id] })),
+      totalAmount: totalAmount,
+      // Adicione mais detalhes da compra conforme necessário
+    };
+  
+    // Observe que o item está sendo armazenado no localStorage com a chave do e-mail do usuário
+    localStorage.setItem(currentUserEmail, JSON.stringify(purchaseDetails));
+  
+    console.log('Compra registrada no localStorage:', purchaseDetails);
+    alert('Compra realizada com sucesso!');
+    // Navegue para a página de produtos comprados
+    navigate('/produtos-comprados');
+  };
+  
 
-  console.log('processando pagamento ')
-
-  const totalAmount = getToTalCartAmount();
-  const products = all_product.filter(produc => cartItem[produc.id]> 0)
-
-   navigate('/produtos-comprados')
- }
-
-
+ 
 
   const handleGerarBoleto = () => {
     if (nomeUsuario.trim() === '' || contatoUsario.trim() === '' || endereçoUsuario.trim() === '' || numeroUsuario.trim() === '') {
@@ -299,7 +317,8 @@ export const CartItems = () => {
           </tr>
         </thead>
         <tbody>
-          {all_product.map((product) => {
+     
+        {all_product.map((product) => {
             if (cartItem[product.id] > 0) {
               return (
                 <tr className="cartitems-row" key={product.id}>
@@ -313,6 +332,8 @@ export const CartItems = () => {
             }
             return null;
           })}
+
+
         </tbody>
       </table>
       <div className="cartitems-down">
@@ -329,7 +350,7 @@ export const CartItems = () => {
             <hr />
             <div className="cartitems-total-item">
               <h3>Total : </h3>
-              <h3>${getToTalCartAmount()}</h3>
+              <h3>{getToTalCartAmount()}</h3>
             </div>
           </div>
           <div className="promo-code">

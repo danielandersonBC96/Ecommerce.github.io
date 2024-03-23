@@ -6,7 +6,7 @@ import cart_icon from '../Assets/cart_icon.png'
 import { ShopContext } from '../../Context/ShopContext';
 
 export const ProductDisplay = (props) => {
-    const { product } = props;
+    const { product , userId} = props;
     const { addToCart} = useContext(ShopContext);
 
     return (
@@ -60,7 +60,7 @@ export const ProductDisplay = (props) => {
                 </div>
                 
                
-                <button  onClick={() => {addToCart(product.id)} }  className='buttondisplay'>Add to cart   <br/>   <img className='carticon' src={ cart_icon} alt=''/>   </button>
+                <button  onClick={() => {addToCart(userId,product.id)} }  className='buttondisplay'>Add to cart   <br/>   <img className='carticon' src={ cart_icon} alt=''/>   </button>
            
              
             </div> 
