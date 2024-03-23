@@ -11,7 +11,13 @@ export const UserPage = () => {
     if (purchaseData) {
       try {
         const purchases = JSON.parse(purchaseData);
-        setUserPurchases([purchases]);
+        setUserPurchases(prevPurchases => {
+          // Verifica se a compra já existe na lista antes de adicionar
+          if (!prevPurchases.some(prevPurchase => prevPurchase.totalAmount === purchases.totalAmount)) {
+            return [...prevPurchases, purchases]; // Adiciona apenas se for uma nova compra
+          }
+          return prevPurchases;
+        });
       } catch (error) {
         console.error('Erro ao analisar os dados do localStorage:', error);
       }
@@ -20,38 +26,50 @@ export const UserPage = () => {
     }
   }, []);
 
+  const handleOrderAgain = (purchaseIndex) => {
+    // Implemente a lógica para pedir novamente a compra
+    console.log(`Pedindo novamente a compra ${purchaseIndex + 1}`);
+  };
+
   return (
     <div className="purchase-container">
       {userPurchases.map((purchase, purchaseIndex) => (
-        <div key={purchaseIndex} className="purchase">
-          <h3>Compra {purchaseIndex + 1}</h3>
-          <div className="table-responsive"> {/* Container para tornar a tabela responsiva */}
-            <table className="purchase-table">
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Categoria</th>
-                  <th>Preço</th>
-                  <th>Quantidade</th>
-                  <th>Imagem</th>
-                </tr>
-              </thead>
-              <tbody>
-                {purchase.items.map((item, itemIndex) => (
-                  <tr key={itemIndex}>
-                    <td>{item.name}</td>
-                    <td>{item.category}</td>
-                    <td>R$ {item.new_price.toFixed(2)}</td>
-                    <td>{item.quantity}</td>
-                    <td><img src={item.image} alt={item.name} className="product-image" /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="total">Total: R$ {purchase.totalAmount.toFixed(2)}</p>
-        </div>
+        <PurchaseCard key={purchaseIndex} purchase={purchase} purchaseIndex={purchaseIndex} handleOrderAgain={handleOrderAgain} />
       ))}
+    </div>
+  );
+};
+
+const PurchaseCard = ({ purchase, purchaseIndex, handleOrderAgain }) => {
+  return (
+    <div className="purchase">
+      <h3>Compra {purchaseIndex + 1}</h3>
+      <div className="table-responsive">
+        <table className="purchase-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th>Imagem</th>
+            </tr>
+          </thead>
+          <tbody>
+            {purchase.items.map((item, itemIndex) => (
+              <tr key={itemIndex}>
+                <td>{item.name}</td>
+                <td>{item.category}</td>
+                <td>R$ {item.new_price.toFixed(2)}</td>
+                <td>{item.quantity}</td>
+                <td><img src={item.image} alt={item.name} className="product-image" /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="total">Total: R$ {purchase.totalAmount.toFixed(2)}</p>
+      <button onClick={() => handleOrderAgain(purchaseIndex)}>Pedir Novamente</button>
     </div>
   );
 };

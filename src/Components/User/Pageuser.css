@@ -19,13 +19,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   height: 200%;
-  max-width: 600px;
+  max-width: 800px;
   margin-bottom: 50px;
+  margin-bottom: 20px;
+  .table-responsive {
+    overflow-x: auto;
+  }
 }
 
-.table-responsive {
-  overflow-x: auto;
-}
 
 .purchase-table {
   width: 100%;

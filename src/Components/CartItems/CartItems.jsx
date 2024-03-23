@@ -35,7 +35,7 @@ export const CartItems = () => {
   const [erro, setErro] = useState('')
   const [numeroCartao, setNumeroCartao] = useState('');
   const [dataValidade, setDataValidade] = useState('')
- 
+
 
   const handleNumeroCartaoChange = (event) => {
 
@@ -91,7 +91,6 @@ export const CartItems = () => {
   } , [])
 
 
-  
   const paymentButton = () => {
     console.log('Processando pagamento ');
   
@@ -135,7 +134,6 @@ export const CartItems = () => {
     // Navegue para a página de produtos comprados
     navigate('/produtos-comprados');
   };
-  
 
  
 
