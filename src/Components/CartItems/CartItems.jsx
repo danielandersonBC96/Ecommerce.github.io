@@ -91,7 +91,6 @@ export const CartItems = () => {
   } , [])
 
 
-  // Observe que o item está sendo armazenado no localStorage com a chave do e-mail do usuário
   const paymentButton = () => {
     console.log('Processando pagamento ');
   
@@ -127,14 +126,26 @@ export const CartItems = () => {
       return;
     }
   
-    // Observe que o item está sendo armazenado no localStorage com a chave do e-mail do usuário
-    localStorage.setItem(currentUserEmail, JSON.stringify(purchaseDetails));
+    // Obtenha as compras anteriores do localStorage
+    let previousPurchases = JSON.parse(localStorage.getItem(currentUserEmail));
+  
+    // Verifique se as compras anteriores são um array
+    if (!Array.isArray(previousPurchases)) {
+      // Se não for um array ou estiver vazio, inicialize uma lista vazia
+      previousPurchases = [];
+    }
+  
+    // Adicione a nova compra à lista de compras anteriores
+    const updatedPurchases = [...previousPurchases, purchaseDetails];
+  
+    // Armazene as compras atualizadas no localStorage
+    localStorage.setItem(currentUserEmail, JSON.stringify(updatedPurchases));
   
     console.log('Compra registrada no localStorage:', purchaseDetails);
     alert('Compra realizada com sucesso!');
     // Navegue para a página de produtos comprados
     navigate('/produtos-comprados');
-  };
+};
 
  
 
