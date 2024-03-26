@@ -7,7 +7,7 @@ export const ProfileUser = () => {
     <div>
       <h1>Compras do Usuário</h1>
     
-     <UserPage/>
+    < UserPage/>
     </div>
   );
 };

@@ -91,6 +91,7 @@ export const CartItems = () => {
   } , [])
 
 
+  // Observe que o item está sendo armazenado no localStorage com a chave do e-mail do usuário
   const paymentButton = () => {
     console.log('Processando pagamento ');
   

@@ -1,7 +1,9 @@
 .purchase-table th,
 .purchase-table td {
   padding: 42px 20px; /* Altere o valor do padding conforme necessário */
-  gap:30px
+  gap:30px;
+width: 100%;
+height: 100%;
 
 }
 
@@ -9,23 +11,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  margin-top: 50px;
 }
 
 .purchase {
+  margin-top: 50px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 200%;
   max-width: 800px;
   margin-bottom: 50px;
-  margin-bottom: 20px;
-  .table-responsive {
-    overflow-x: auto;
-  }
 }
+
 
 
 .purchase-table {
@@ -34,7 +35,10 @@
 }
 
 .purchase-table th {
-  background-color: #f2f2f2;
+  background-color:white;
+color:   black;
+border-radius: 15px;
+
 }
 
 .purchase-table td {
