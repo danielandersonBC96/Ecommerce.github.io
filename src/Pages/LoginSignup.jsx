@@ -8,6 +8,7 @@ import { RingLoader } from 'react-spinners';
 import { ShopContext } from '../Context/ShopContext';
 
 // Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyABRXp9M-W7FiG5KtjQxnaySXhuoJwIPhs",
   authDomain: "ecommerce-cc6b8.firebaseapp.com",
@@ -23,6 +24,7 @@ const spinnerStyles = {
 };
 
 // Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -159,7 +161,7 @@ export const LoginSignup = () => {
             </div>
           )}
 
-<button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button>
+          <button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button>
           <button onClick={loggedIn ? null : () => handleLogin('itemId')}>{loggedIn ? 'Continue' : 'Login'}</button>
         </div>
       )}
