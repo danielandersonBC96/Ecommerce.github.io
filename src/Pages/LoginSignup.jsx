@@ -8,6 +8,8 @@ import { ShopContext } from '../Context/ShopContext';
 import { getDatabase, ref, set } from 'firebase/database';
 import '../Css/login.css'
 // Firebase configuration
+
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyABRXp9M-W7FiG5KtjQxnaySXhuoJwIPhs",
   authDomain: "ecommerce-cc6b8.firebaseapp.com",
@@ -43,8 +45,8 @@ export const LoginSignup = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const { addToCart } = useContext(ShopContext);
   const navigate = useNavigate();
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -59,22 +61,27 @@ export const LoginSignup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Escrever os dados no banco de dados Firebase em um caminho específico
-    set(ref(db, "Usuarios"), {
+  
+    // Escrever os dados no banco de dados Firebase
+    set(ref(db, 'Usuarios/' + formData.email.replace('.', '_')), {
       name: formData.name,
-      email: formData.email
+      email: formData.email,
+      password: formData.password
     }).then(() => {
       console.log('Dados cadastrados com sucesso no banco de dados Firebase.');
+      // Limpar o formulário após o cadastro bem-sucedido
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
     }).catch((error) => {
       console.error('Erro ao cadastrar os dados no banco de dados Firebase:', error);
     });
-
-    // Após o envio do formulário, você pode fechar o modal
-    setModalIsOpen(false);
   };
-
-
-
+  
+  
   useEffect(() => {
     const storedEmail = localStorage.getItem('storedEmail');
     const storedRememberMe = localStorage.getItem('storedRememberMe');
@@ -101,32 +108,9 @@ export const LoginSignup = () => {
     setModalIsOpen(true);
   };
 
-  const createUserAccount = async (email) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, 'senha_aleatoria');
-      const user = userCredential.user;
-      console.log('User account created:', user);
-    } catch (error) {
-      console.error('Error creating user account:', error);
-    }
-  };
+  
 
-  const handleGoogleLogin = async () => {
-    setLoading(true); // Defina loading como true antes de iniciar o login com Google
-
-    const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      console.log('Logged in user:', user);
-      createUserAccount(user.email);
-      navigate('/produtos-comprados'); // Redirecione após o login ser concluído
-    } catch (error) {
-      console.error('Error signing in with Google:', error);
-    } finally {
-      setLoading(false); // Defina loading como false após o login (com sucesso ou falha)
-    }
-  };
+  
 
   const gerUserByEmail = (email) => {
     const users = [
@@ -215,6 +199,7 @@ export const LoginSignup = () => {
         </div>
       )}
     </div>
+
     <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -244,8 +229,9 @@ export const LoginSignup = () => {
       <button onClick={() => setModalIsOpen(false)}>x</button>
     </div>
   </form>
- 
-</Modal>
-    </div>
+  </Modal>
+
+  </div>
+     
   );
 };
