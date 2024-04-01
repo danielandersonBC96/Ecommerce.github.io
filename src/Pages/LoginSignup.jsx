@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { RingLoader } from 'react-spinners';
-import { ShopContext } from '../Context/ShopContext';
-import { getDatabase, ref, set } from 'firebase/database';
+import { get , ref, set , getDatabase} from 'firebase/database';
+// Importe Firestore e as funções necessárias
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+
 import '../Css/login.css'
 import  close from '../Components/Assets/cart_cross_icon.png';
-
-// Firebase configuration
 
 // Firebase configuration
 const firebaseConfig = {
@@ -21,6 +21,13 @@ const firebaseConfig = {
   appId: "1:161292394724:web:f60d3135b1c79d43fb0cf1",
   measurementId: "G-48SDPM1P5R"
 };
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+
+
 const spinnerStyles = {
   display: 'block',
   margin: '0 auto'
@@ -37,9 +44,7 @@ const customStyles = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
+
 
 export const LoginSignup = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -82,7 +87,9 @@ export const LoginSignup = () => {
       console.error('Erro ao cadastrar os dados no banco de dados Firebase:', error);
     });
   };
+
   
+ 
   
   useEffect(() => {
     const storedEmail = localStorage.getItem('storedEmail');
@@ -122,37 +129,58 @@ export const LoginSignup = () => {
     return users.find(user => user.email === email);
   };
 
+
   const handleLogin = async () => {
     setLoading(true); // Define loading como true ao clicar no botão de login
   
-    // Simula um login bem-sucedido após 5 segundos
-    setTimeout(async () => {
+    try {
       const { email, password } = loginData;
-      const user = gerUserByEmail(email);
   
-      if (user && user.password === password) {
-        if (rememberMe) {
-          localStorage.setItem('storedEmail', email); // Armazena o e-mail do usuário no localStorage
-          localStorage.setItem('storedRememberMe', true); // Armazena o sinalizador "lembrar-me" no localStorage
-        } else {
-          localStorage.removeItem('storedEmail'); // Remove o e-mail do usuário do localStorage
-          localStorage.removeItem('storedRememberMe'); // Remove o sinalizador "lembrar-me" do localStorage
-        }
+      // Verifica se o usuário está registrado no banco de dados Firebase
+      const userRef = ref(db, 'Usuarios/' + email.replace('.', '_'));
+      const snapshot = await get(userRef);
   
-        if (user.userType === 'admin') {
-          navigate('/cadastrar-produtos'); // Redireciona para a página de administração se o usuário for um administrador
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        const { password: storedPassword, userType } = userData;
+  
+        // Verifica se a senha fornecida corresponde à senha registrada no banco de dados
+        if (password === storedPassword) {
+          if (rememberMe) {
+            localStorage.setItem('storedEmail', email); // Armazena o e-mail do usuário no localStorage
+            localStorage.setItem('storedRememberMe', true); // Armazena o sinalizador "lembrar-me" no localStorage
+          } else {
+            localStorage.removeItem('storedEmail'); // Remove o e-mail do usuário do localStorage
+            localStorage.removeItem('storedRememberMe'); // Remove o sinalizador "lembrar-me" do localStorage
+          }
+  
+          // Autentica o usuário como bem-sucedido
+          // Você pode adicionar aqui o redirecionamento adequado com base no tipo de usuário, se necessário
+          if (userType === 'admin') {
+            navigate('/cadastrar-produtos'); // Redireciona para a página de administração se o usuário for um administrador
+          } else {
+            // Aqui você associaria a compra ao usuário logado antes de redirecionar
+            navigate('/produtos-comprados'); // Redireciona para a página de produtos comprados
+          }
+  
+          // Exibe um alerta de login bem-sucedido
+          alert('Login bem-sucedido');
         } else {
-          // Aqui você associaria a compra ao usuário logado antes de redirecionar
-          navigate('/produtos-comprados'); // Redireciona para a página de produtos comprados
+          alert('Invalid email or password'); // Exibe um alerta se a senha for inválida
         }
       } else {
-        alert('Invalid email or password'); // Exibe um alerta se o e-mail ou a senha forem inválidos
+        alert('User not found'); // Exibe um alerta se o e-mail não estiver registrado no banco de dados
       }
+    } catch (error) {
+      console.error('Error signing in:', error);
+      alert('Error signing in. Please try again.'); // Exibe um alerta se houver um erro no login
+    }
   
-      setLoading(false); // Define loading como false após o login ser concluído
-    }, 5000); // 5 segundos de timeout para simular um login demorado
+    setLoading(false); // Define loading como false após o login ser concluído
   };
   
+
+
   return (
     <div className="loginsignup">
        <div style={{ position: 'relative', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

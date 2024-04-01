@@ -4,7 +4,7 @@
     justify-content: space-around;
     padding: 16px;
     box-shadow: 0 1px 3px -2pc white;
-    background-color: black;
+    background-color:  white;
    
 
 }
@@ -28,7 +28,9 @@
     font-weight: 500;
 
 }
-
+Link{
+    text-decoration: none;
+}
 .nav-menu li {
 
     display: flex;
@@ -112,7 +114,7 @@
     border-radius: 11px;
     font-size: 14px;
     background-color: green;
-    color: white;
+    color:  black;
 
 }
 
@@ -120,7 +122,12 @@
  
      text-decoration: none;
      cursor: pointer;
-     color:   floralwhite;
+     color:    black;
      margin-top: 230px;
       margin-left: 10px;
+}
+
+.user-link{
+
+    text-decoration: none;
 }
