@@ -2,16 +2,19 @@
   background-color: #f8f9fa; /* Cor de fundo */
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px  black ;
   margin: 50px auto; /* Margens superior e inferior de 50px e centraliza horizontalmente */
 }
 
+h2{
+  margin-top: 50px;
+}
 
 .purchase-container {
   background-color: #f8f9fa; /* Cor de fundo */
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px black;
 }
 
 .purchase {
@@ -34,7 +37,7 @@
 }
 
 .purchase-table th {
-  background-color: #343a40; /* Cor de fundo dos cabeçalhos */
+  background-color:  black ; /* Cor de fundo dos cabeçalhos */
   color: white;
 }
 
@@ -46,10 +49,14 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px  #fff ;
 }
 
 .product-image {
   width: 50px; /* Tamanho das imagens */
   height: auto;
+}
+
+img{
+   cursor: pointer;
 }

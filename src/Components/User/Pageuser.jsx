@@ -57,6 +57,7 @@ export const UserPage = () => {
 
   return (
     <div className="centered-container">
+ <h2> Compras do Usuário </h2>
       <div className="purchase-container">
         {purchases.map((purchase, index) => (
           <div key={index} className="purchase">

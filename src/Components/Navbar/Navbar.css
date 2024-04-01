@@ -4,7 +4,8 @@
     justify-content: space-around;
     padding: 16px;
     box-shadow: 0 1px 3px -2pc white;
-    color: #fff;
+    background-color: black;
+   
 
 }
 
@@ -91,4 +92,35 @@
     background-color: #FF4141;
     color: white;
     
+}
+
+.User-icon{
+    width: 50px;
+    margin-right: 50px;
+    margin-left: 20px;
+}
+
+.icon-on-line{
+
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    margin-top: -25px;
+    margin-left:  140px;
+    border-radius: 11px;
+    font-size: 14px;
+    background-color: green;
+    color: white;
+
+}
+
+.User-Name{
+ 
+     text-decoration: none;
+     cursor: pointer;
+     color:   floralwhite;
+     margin-top: 230px;
+      margin-left: 10px;
 }

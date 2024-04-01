@@ -7,6 +7,8 @@ import { RingLoader } from 'react-spinners';
 import { ShopContext } from '../Context/ShopContext';
 import { getDatabase, ref, set } from 'firebase/database';
 import '../Css/login.css'
+import  close from '../Components/Assets/cart_cross_icon.png';
+
 // Firebase configuration
 
 // Firebase configuration
@@ -120,38 +122,37 @@ export const LoginSignup = () => {
     return users.find(user => user.email === email);
   };
 
-  const handleLogin = async (itemId) => {
+  const handleLogin = async () => {
     setLoading(true); // Define loading como true ao clicar no botão de login
-
+  
     // Simula um login bem-sucedido após 5 segundos
     setTimeout(async () => {
       const { email, password } = loginData;
       const user = gerUserByEmail(email);
-
+  
       if (user && user.password === password) {
         if (rememberMe) {
-          localStorage.setItem('storedEmail', email);
-          localStorage.setItem('storedRememberMe', true);
+          localStorage.setItem('storedEmail', email); // Armazena o e-mail do usuário no localStorage
+          localStorage.setItem('storedRememberMe', true); // Armazena o sinalizador "lembrar-me" no localStorage
         } else {
-          localStorage.removeItem('storedEmail');
-          localStorage.removeItem('storedRememberMe');
+          localStorage.removeItem('storedEmail'); // Remove o e-mail do usuário do localStorage
+          localStorage.removeItem('storedRememberMe'); // Remove o sinalizador "lembrar-me" do localStorage
         }
-
+  
         if (user.userType === 'admin') {
-          navigate('/cadastrar-produtos');
+          navigate('/cadastrar-produtos'); // Redireciona para a página de administração se o usuário for um administrador
         } else {
           // Aqui você associaria a compra ao usuário logado antes de redirecionar
-      
-          navigate('/produtos-comprados');
+          navigate('/produtos-comprados'); // Redireciona para a página de produtos comprados
         }
       } else {
-        alert('Invalid email or password');
+        alert('Invalid email or password'); // Exibe um alerta se o e-mail ou a senha forem inválidos
       }
-
+  
       setLoading(false); // Define loading como false após o login ser concluído
     }, 5000); // 5 segundos de timeout para simular um login demorado
   };
-
+  
   return (
     <div className="loginsignup">
        <div style={{ position: 'relative', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -192,8 +193,9 @@ export const LoginSignup = () => {
 
           {!loggedIn && (
             <>
-              <button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button>
               <button onClick={() => handleLogin('itemId')}>{loggedIn ? 'Continue' : 'Login'}</button>
+              <button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button>
+           
             </>
           )}
         </div>
@@ -206,32 +208,32 @@ export const LoginSignup = () => {
         contentLabel="Cadastro Modal"
         style={customStyles} // Aplicar os estilos personalizados
       >
-  <h2>Cadastro</h2>
-  <form onSubmit={handleSubmit}>
-    <div className="form-group">
-      <label htmlFor="name">Nome:</label>
-      <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-    </div>
-    <div className="form-group">
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-    </div>
-    <div className="form-group">
-      <label htmlFor="password">Senha:</label>
-      <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
-    </div>
-    <div className="form-group">
-      <label htmlFor="confirm-password">Confirmar Senha:</label>
-      <input type="password" id="confirm-password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-    </div>
-    <div className="form-group">
-      <button type="submit">Cadastrar</button>
-      <button onClick={() => setModalIsOpen(false)}>x</button>
-    </div>
-  </form>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <h2>Cadastro</h2>
+          <img src={close} alt="Fechar" onClick={() => setModalIsOpen(false)} />
+      </div>
+    <form onSubmit={handleSubmit}>
+         <div className="form-group">
+           <label htmlFor="name">Nome:</label>
+           <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+        </div>
+       <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+       </div>
+       <div className="form-group">
+         <label htmlFor="password">Senha:</label>
+         <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
+       </div>
+       <div className="form-group">
+          <label htmlFor="confirm-password">Confirmar Senha:</label>
+          <input type="password" id="confirm-password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+       </div>
+      <div className="form-group">
+         <button type="submit">Cadastrar</button>
+      </div>
+   </form>
   </Modal>
-
-  </div>
-     
+</div>     
   );
 };
