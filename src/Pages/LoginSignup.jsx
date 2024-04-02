@@ -88,9 +88,6 @@ export const LoginSignup = () => {
     });
   };
 
-  
- 
-  
   useEffect(() => {
     const storedEmail = localStorage.getItem('storedEmail');
     const storedRememberMe = localStorage.getItem('storedRememberMe');
@@ -117,18 +114,22 @@ export const LoginSignup = () => {
     setModalIsOpen(true);
   };
 
-  
 
-  
+  const getUserByEmail = (email) => {
 
-  const gerUserByEmail = (email) => {
     const users = [
-      { email: 'progamin@example.com', password: 'userpassword', userType: 'user', id: '1' },
-      { email: 'admin@example.com', password: 'adminpassword', userType: 'admin', id: '2' }
+
+      { name: 'Ui/Ux', email: 'UiUx@exemple.com', password: 'uiuxpassword', userType: 'user', id: '1' },
+      { name: 'QaTest', email: 'QaTeste@exemple.com', password: 'testpassword', userType: 'user', id: '2' },
+      { name: 'DevAcount', email: 'progamin@example.com', password: 'userpassword', userType: 'user', id: '3' },
+      { name: 'Administrador', email: 'admin@example.com', password: 'adminpassword', userType: 'admin', id: '4' },
+      { name:'Product Oner',email: 'po@exemple.com', password:'popassword ' , userType:'admin', id:'5'},
+      { name:'Gp ', email: 'gp@exemple.com', password:'gppassword', userType:'admin', id:'6'}
+      
+
     ];
     return users.find(user => user.email === email);
   };
-
 
   const handleLogin = async () => {
     setLoading(true); // Define loading como true ao clicar no botão de login
@@ -136,40 +137,61 @@ export const LoginSignup = () => {
     try {
       const { email, password } = loginData;
   
-      // Verifica se o usuário está registrado no banco de dados Firebase
-      const userRef = ref(db, 'Usuarios/' + email.replace('.', '_'));
-      const snapshot = await get(userRef);
-  
-      if (snapshot.exists()) {
-        const userData = snapshot.val();
-        const { password: storedPassword, userType } = userData;
-  
-        // Verifica se a senha fornecida corresponde à senha registrada no banco de dados
-        if (password === storedPassword) {
-          if (rememberMe) {
-            localStorage.setItem('storedEmail', email); // Armazena o e-mail do usuário no localStorage
-            localStorage.setItem('storedRememberMe', true); // Armazena o sinalizador "lembrar-me" no localStorage
-          } else {
-            localStorage.removeItem('storedEmail'); // Remove o e-mail do usuário do localStorage
-            localStorage.removeItem('storedRememberMe'); // Remove o sinalizador "lembrar-me" do localStorage
-          }
-  
-          // Autentica o usuário como bem-sucedido
-          // Você pode adicionar aqui o redirecionamento adequado com base no tipo de usuário, se necessário
-          if (userType === 'admin') {
-            navigate('/cadastrar-produtos'); // Redireciona para a página de administração se o usuário for um administrador
-          } else {
-            // Aqui você associaria a compra ao usuário logado antes de redirecionar
-            navigate('/produtos-comprados'); // Redireciona para a página de produtos comprados
-          }
-  
-          // Exibe um alerta de login bem-sucedido
-          alert('Login bem-sucedido');
+      // Verifica se o usuário está registrado localmente
+      const localUser = getUserByEmail(email);
+      if (localUser && localUser.password === password) {
+        // Autenticação local bem-sucedida
+        // Você pode adicionar aqui o redirecionamento adequado com base no tipo de usuário, se necessário
+        if (localUser.userType === 'admin') {
+          navigate('/cadastrar-produtos'); // Redireciona para a página de administração se o usuário for um administrador
         } else {
-          alert('Invalid email or password'); // Exibe um alerta se a senha for inválida
+          navigate('/produtos-comprados'); // Redireciona para a página de produtos comprados
         }
+        // Armazena as informações do usuário localmente, se necessário
+        if (rememberMe) {
+          localStorage.setItem('storedEmail', email);
+          localStorage.setItem('storedRememberMe', true);
+        } else {
+          localStorage.removeItem('storedEmail');
+          localStorage.removeItem('storedRememberMe');
+        }
+        // Exibe um alerta de login bem-sucedido
+        alert('Login bem-sucedido');
       } else {
-        alert('User not found'); // Exibe um alerta se o e-mail não estiver registrado no banco de dados
+        // Verifica se o usuário está registrado no banco de dados Firebase
+        const userRef = ref(db, 'Usuarios/' + email.replace('.', '_'));
+        const snapshot = await get(userRef);
+  
+        if (snapshot.exists()) {
+          const userData = snapshot.val();
+          const { password: storedPassword, userType, name } = userData;
+  
+          // Verifica se a senha fornecida corresponde à senha registrada no banco de dados
+          if (password === storedPassword) {
+            if (rememberMe) {
+              localStorage.setItem('storedEmail', email); // Armazena o e-mail do usuário no localStorage
+              localStorage.setItem('storedRememberMe', true); // Armazena o sinalizador "lembrar-me" no localStorage
+            } else {
+              localStorage.removeItem('storedEmail'); // Remove o e-mail do usuário do localStorage
+              localStorage.removeItem('storedRememberMe'); // Remove o sinalizador "lembrar-me" do localStorage
+            }
+  
+            // Autentica o usuário como bem-sucedido
+            // Redireciona o usuário com base no tipo (admin ou comum)
+            if (userType === 'admin') {
+              navigate('/cadastrar-produtos'); // Redireciona para a página de administração se o usuário for um administrador
+            } else {
+              navigate('/produtos-comprados'); // Redireciona para a página de produtos comprados
+            }
+  
+            // Exibe um alerta de login bem-sucedido
+            alert('Login bem-sucedido');
+          } else {
+            alert('Invalid email or password'); // Exibe um alerta se a senha for inválida
+          }
+        } else {
+          alert('User not found'); // Exibe um alerta se o e-mail não estiver registrado no banco de dados
+        }
       }
     } catch (error) {
       console.error('Error signing in:', error);
@@ -177,9 +199,10 @@ export const LoginSignup = () => {
     }
   
     setLoading(false); // Define loading como false após o login ser concluído
-  };
-  
+};
 
+  
+  
 
   return (
     <div className="loginsignup">

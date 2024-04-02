@@ -4,7 +4,7 @@
     justify-content: space-around;
     padding: 16px;
     box-shadow: 0 1px 3px -2pc white;
-    background-color:  white;
+    background-color:  black;
    
 
 }
@@ -102,32 +102,29 @@ Link{
     margin-left: 20px;
 }
 
+.user-link {
+    display: flex;
+    align-items: center; /* Centralizar verticalmente */
+  }
+
 .icon-on-line{
 
-    width: 15px;
-    height: 15px;
-    display: flex;
-    justify-content: center;
-    align-items:  center;
-    margin-top: -25px;
-    margin-left:  140px;
-    border-radius: 11px;
-    font-size: 14px;
-    background-color: green;
-    color:  black;
+  
+    width: 10px; /* Ajuste conforme necessário */
+    height: 10px; /* Ajuste conforme necessário */
+    background-color: green; /* Cor do ícone "online" */
+    border-radius: 50%; /* Forma circular */
+    margin-left: -45px; 
 
 }
+
 
 .User-Name{
  
      text-decoration: none;
      cursor: pointer;
-     color:    black;
-     margin-top: 230px;
+     color:    white;
+     margin-top: 20px;
       margin-left: 10px;
 }
 
-.user-link{
-
-    text-decoration: none;
-}
