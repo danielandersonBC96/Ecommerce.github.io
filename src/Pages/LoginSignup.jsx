@@ -4,9 +4,10 @@ import Modal from 'react-modal';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { RingLoader } from 'react-spinners';
-import { get , ref, set , getDatabase} from 'firebase/database';
+import { get ,ref, set , getDatabase  } from 'firebase/database';
+import { getDoc, doc } from "firebase/firestore";
+
 // Importe Firestore e as funções necessárias
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 import '../Css/login.css'
 import  close from '../Components/Assets/cart_cross_icon.png';
@@ -53,7 +54,7 @@ export const LoginSignup = () => {
   const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
-
+  const [userName, setUserName] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -200,9 +201,6 @@ export const LoginSignup = () => {
   
     setLoading(false); // Define loading como false após o login ser concluído
 };
-
-  
-  
 
   return (
     <div className="loginsignup">

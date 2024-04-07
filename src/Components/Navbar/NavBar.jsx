@@ -29,7 +29,7 @@ export const NavBar = () => {
   // Inicialização do Firebase
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
-  
+  const auth = getAuth(); 
 
   useEffect(() => {
     const checkLoggedInStatus = async () => {
@@ -58,6 +58,7 @@ export const NavBar = () => {
 
     checkLoggedInStatus();
   }, [db]);
+
 
   const getUserByEmail = (email) => {
     const users = [
@@ -95,7 +96,7 @@ export const NavBar = () => {
       <div className='nav-login-cart'>
         {isLoggedIn ? (
           <>
-            <Link to='/profile' className='user-link'>
+            <Link to='/produtos-comprados' className='user-link'>
               <span className='User-Name'>{userName}</span>
               <img className='User-icon' src={userIcon} alt='User Icon' />
               <div className="icon-on-line"></div> {/* Ícone "online" */}
