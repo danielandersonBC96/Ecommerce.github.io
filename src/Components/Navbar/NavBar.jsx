@@ -101,7 +101,14 @@ export const NavBar = () => {
               <img className='User-icon' src={userIcon} alt='User Icon' />
               <div className="icon-on-line"></div> {/* Ícone "online" */}
             </Link>
+           
+            
+          
+           
+            <Link to={'/'}>
             <button onClick={handleLogout}>Logout</button>
+            </Link>       
+
           </>
         ) : (
           <Link to='/login'>
