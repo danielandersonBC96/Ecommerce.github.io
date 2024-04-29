@@ -1,0 +1,70 @@
+/* Estilo para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para o contêiner do formulário */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o título do formulário */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para rótulos e campos de entrada */
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para a mensagem de sucesso */
+.success-message {
+    color: #28a745;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Estilo para a mensagem de erro */
+.error-message {
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}

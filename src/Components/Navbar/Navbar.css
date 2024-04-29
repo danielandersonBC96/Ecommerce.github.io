@@ -3,8 +3,9 @@
     display: flex;
     justify-content: space-around;
     padding: 16px;
-    box-shadow: 0 1px 3px -2pc white;
-    background-color:  white;
+    box-shadow: 0 1px 3px -2pc rgb(0, 0, 0);
+    background-color:   black;
+    text-decoration: none;
    
 
 }
@@ -23,9 +24,10 @@
     align-items: center;
     list-style:none;
     gap: 50px ;
-    color: #626262;;
+    color:  yellow;;
     font-size:  20px;
     font-weight: 500;
+    text-emphasis: none;
 
 }
 Link{
@@ -39,14 +41,14 @@ Link{
     justify-content: center;
     gap: 3px; 
     cursor: pointer;
-    color:  black;
-    background-color: #ffffff;
+    color:   white;
+    background-color:  yellow;
     padding: 15px;
     border: none;
     border-radius: 10px;
     text-decoration: none;
     border: solid 1px black;
-
+    text-decoration: none;
 }
 
 
@@ -123,8 +125,11 @@ Link{
  
      text-decoration: none;
      cursor: pointer;
-     color:     black;
+     color:     white;
      margin-top: 20px;
       margin-left: 10px;
 }
 
+.logo{
+    width: 180px;
+}

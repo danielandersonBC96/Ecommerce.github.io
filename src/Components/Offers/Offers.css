@@ -1,15 +1,12 @@
 .Offers{
 
-    width: 65%;
-    height: 68vh;
-    display: flex;
-    margin:  0px 140px;
-    padding:  0px  40px;
-    margin-bottom: 150px ;
+    height: 100vh;
    
-    
+    display: flex;
+    margin: 100px;
+    margin-bottom: 100px;
+   
 }
-
 .Offers-left{
 
     flex: 1;
@@ -29,9 +26,16 @@
 
 }
 
+.carabina{
+    width: 900px;
+    height: 600px;
+    margin-right: 100px;
+    margin-top: 240px;
+}
+
 .Offers-left p {
 
-    color: #ff4141;
+    color:   yellow;
     font-size: 22px;
     font-weight: 600;
 
@@ -42,8 +46,8 @@
     width: 282px;
     height: 70px;
     border-radius: 35px ;
-    background: #ff4141;
-    color: white;
+    background:  yellow;
+    color:  black;
     cursor:  pointer;
     margin: 50px;
     border: none;

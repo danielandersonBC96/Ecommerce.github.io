@@ -1,0 +1,40 @@
+/* Estilos para o formulário de criação de categoria */
+.new-category-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .new-category-form label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .new-category-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .new-category-form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .new-category-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  

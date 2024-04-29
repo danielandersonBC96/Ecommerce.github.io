@@ -1,4 +1,4 @@
-import p1_img from "./product_1.png";
+import motor from "./motor.png";
 import p2_img from "./product_2.png";
 import p3_img from "./product_3.png";
 import p4_img from "./product_4.png";
@@ -38,9 +38,9 @@ import p36_img from "./product_36.png";
 let all_product = [
   {
     id: 1,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name: "motor buffalo",
     category: "women",
-    image: p1_img,
+    image: motor,
     new_price: 50.0,
     old_price: 80.5,
   },

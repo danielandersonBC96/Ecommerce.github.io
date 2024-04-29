@@ -9,7 +9,7 @@ export const NewCollections = () => {
  
   return (
     <div className='newcollections'>
-      <h1>NEW COLLECTION</h1>
+      <h1>MAIS ITEMS</h1>
       <hr />
       <div className="carousel">
         

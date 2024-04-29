@@ -1,29 +1,28 @@
 import React from 'react';
 import  './Hero.css';
 import arow_icon from '../Assets/arrow.png';
-import hero_image from '../Assets/hero_image.png';
+import motor_buffalo from '../Assets/26.png';
 
 
 export const Hero = () => {
   return (
     <div className='hero ' >  
       <div className="hero-left">
-        <h2> NEWS ARRIVALS ONLY </h2>
+        <h2>  Tudo novo: descubra as últimas novidades agora   </h2>
         <div>
           <div className="hand-han-icon">
-            <p> new </p>
+       
           </div>
-          <p> collection </p>
-          <p>for everyone </p>
+          <p> 
+            
+          Nova coleção: Para todos os estilos. 
+             </p>
         </div>
-         <div className="hero-latest-btn">
-          <div>Latest Collection </div>
-           <img src={ arow_icon } alt=''/>
-         </div>
+     
 
       </div>
       <div className="hero-right">
-        <img src={hero_image} alt="" />
+        <img src={motor_buffalo} className='motor-logo' alt="" />
 
       </div>
     </div>

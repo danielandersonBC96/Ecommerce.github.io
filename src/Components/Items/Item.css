@@ -1,9 +1,10 @@
 .item{
 
-    width: 350px;
+    width: 450px;
+
   
-   color: rgb(0, 0, 0); 
-   background-color: rgb(250, 242, 231);
+   color: white; 
+   background-color: black;
    border-radius: 15px;
    padding: 30px;
   gap: 17px;
@@ -14,7 +15,7 @@
     margin: 6px 0px ;
     padding: 10px;
    
-    color: black;
+    color: white;
 }
 
 .item img {
@@ -51,7 +52,7 @@
 
     width: 100%;
     border-radius: 15px;
-    background-color:  white; 
+    background-color:   yellow; 
     color: black;
     margin-right: 50px;
 }
