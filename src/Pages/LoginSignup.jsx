@@ -204,17 +204,22 @@ export const LoginSignup = () => {
 
   return (
     <div className="loginsignup">
-       <div style={{ position: 'relative', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+    <div style={{ position: 'relative' }}>
       {loading && (
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
           <RingLoader color={'#FF0000'} loading={loading} size={150} />
-          <p>Loading...</p>
+        
         </div>
       )}
-      
+
+    
       {!loading && (
+
+        
         <div className="loginsignup-container">
-          <h1>{loggedIn ? 'Welcome back!' : 'Sign Up'}</h1>
+          
+          <h1>{loggedIn ? 'Welcome back!' : ''}</h1>
           {!loggedIn && (
             <div className="loginsignup-fields">
               <input
@@ -239,50 +244,49 @@ export const LoginSignup = () => {
               </label>
             </div>
           )}
-
-          {!loggedIn && (
-            <>
-              <button onClick={() => handleLogin('itemId')}>{loggedIn ? 'Continue' : 'Login'}</button>
-              <button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button>
-           
-            </>
-          )}
+  
+          <div className="loginsignup-fields">
+            <button onClick={() => handleLogin('itemId')}>{loggedIn ? 'Continue' : 'Login'}</button>
+            <button onClick={loggedIn ? null : openModal}>{loggedIn ? 'Continue' : 'Create Account'}</button>
+          </div>
         </div>
       )}
     </div>
-
+  
     <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        contentLabel="Cadastro Modal"
-        style={customStyles} // Aplicar os estilos personalizados
-      >
+      isOpen={modalIsOpen}
+      onRequestClose={() => setModalIsOpen(false)}
+      contentLabel="Cadastro Modal"
+      className="custom-modal" // Aplicar os estilos personalizados do modal
+    >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <h2>Cadastro</h2>
-          <img src={close} alt="Fechar" onClick={() => setModalIsOpen(false)} />
+        <h2>Cadastro</h2>
+        <img src={close} alt="Fechar" onClick={() => setModalIsOpen(false)} style={{ cursor: 'pointer' }} />
       </div>
-    <form onSubmit={handleSubmit}>
-         <div className="form-group">
-           <label htmlFor="name">Nome:</label>
-           <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Nome:</label>
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
-       <div className="form-group">
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-       </div>
-       <div className="form-group">
-         <label htmlFor="password">Senha:</label>
-         <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
-       </div>
-       <div className="form-group">
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Senha:</label>
+          <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
           <label htmlFor="confirm-password">Confirmar Senha:</label>
           <input type="password" id="confirm-password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-       </div>
-      <div className="form-group">
-         <button type="submit">Cadastrar</button>
-      </div>
-   </form>
-  </Modal>
-</div>     
+        </div>
+        <div className="form-group">
+          <button type="submit">Cadastrar</button>
+        </div>
+      </form>
+    </Modal>
+  </div>
+  
+  
   );
 };
