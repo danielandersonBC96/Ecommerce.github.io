@@ -1,79 +1,74 @@
-
-.hero{
-
-    height: 100vh;
-    background:  linear-gradient( 180deg , rgb(251, 255, 9) , rgb(221, 217, 217) );
+.hero {
     display: flex;
-    margin: 100px;
-    margin-bottom: 100px;
-}
-
-.hero-left{
-
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    margin: 20px;
+  }
+  
+  .hero-left {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap:20px;
-    padding-left: 100px;
-    line-height: 1.1;
-
-}
-
-.hero-left h2 {
-    
-    color: black;
-    font-size: 26px;
-    font-weight: 600;
-
-}
-
-.hero-left p {
-
-    color:black;
-    font-size: 100px;
-    font-weight:  700 ;
-
-}
-
-
-.hero-hand-icon{
-
-    display:contents;
-    align-items: center;
-    gap: 20px
-}
-
-.hero-hand-icon img{
-
-    width:  85px ;
- 
-
-}
-
-.hero-latest-btn{
-
+    max-width: 50%;
+  }
+  
+  .hero-left h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .hero-left p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .hero-right {
+    flex: 1;
+    max-width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 15px;
-    width: 210px;
-    height: 40px;
-    padding: 10px;
-    border-radius: 75px;
-    margin-bottom: 30px;
-    background: rgb(251, 255, 9) ;
-    color:  black;
-    font-size: 22px ;
-    font-weight: 500;
-    cursor: pointer;
-
-}
-
-.motor-logo{
-    width: 900px;
-    height: 500px;
-    margin-right: 100px;
-    margin-top: 240px;
-}
-
+  }
+  
+  .hero-right img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  .hand-han-icon {
+    margin-top: 15px;
+  }
+  
+  .motor-logo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .hero-left,
+    .hero-right {
+      max-width: 100%;
+    }
+  
+    .hero-left h2 {
+      font-size: 2rem;
+    }
+  
+    .hero-left p {
+      font-size: 1rem;
+    }
+  
+    .hero-right img {
+      max-width: 300px;
+    }
+  }
+  

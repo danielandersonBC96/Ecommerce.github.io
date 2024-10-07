@@ -1,34 +1,87 @@
-.newcollections{
-
+.newcollections {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    height: 100vh;
-    margin: 100px;
+    gap: 20px;
+    padding: 50px;
+    background-color: white;
+    color: white;
+  }
   
-    
-}
-
-.newcollections h1{
-
-    color: rgb(251, 255, 9) ;
-    font-size: 50px;
+  .newcollections h1 {
+    color:  black;
+    font-size: 3rem;
     font-weight: 600;
-
-}
-
-.newcollections hr  {
-
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .newcollections hr {
     width: 200px;
     height: 6px;
     border-radius: 10px;
-    background: rgb(251, 255, 9) ;
-}
-.collection {
-
+    background: black;
+    border: none;
+    margin: 0;
+  }
+  
+  .collection {
     margin-top: 50px;
     display: flex;
     gap: 30px;
-
-}
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Impede que os itens sejam empilhados */
+  }
+  
+  .collection-item {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .collection-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .collection-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 1024px) {
+    .newcollections h1 {
+      font-size: 2.5rem;
+    }
+  
+    .collection {
+      gap: 20px;
+      flex-wrap: wrap; /* Volta a empilhar em telas menores */
+    }
+  
+    .collection-item {
+      width: 260px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .newcollections {
+      padding: 20px;
+    }
+  
+    .newcollections h1 {
+      font-size: 2rem;
+    }
+  
+    .collection-item {
+      width: 220px;
+    }
+  }
+  

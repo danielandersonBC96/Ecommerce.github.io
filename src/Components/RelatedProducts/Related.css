@@ -1,52 +1,72 @@
 .relatedproducts {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px; /* Adicionado padding para espaçamento entre o conteúdo e as bordas */
-  }
-  
-  .relatedproducts h1 {
-    color: #171717;
-    font-size: 2.5rem; /* Alterado para tamanho de fonte responsivo */
-    font-weight: 600;
-    margin-bottom: 20px; /* Adicionado espaçamento inferior para separar do conteúdo abaixo */
-  }
-  
-  .relatedproducts hr {
-    width: 100%; /* Alterado para largura total */
-    max-width: 200px; /* Limitado a uma largura máxima */
-    height: 6px;
-    border-radius: 10px;
-    background: #252525;
-    margin: 0 auto; /* Centralizado horizontalmente */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 20px;
+  background-color: #f8f8f8; /* Fundo suave para destacar a seção */
+}
+
+.relatedproducts h1 {
+  color: #171717;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center; /* Centraliza o título */
+}
+
+.relatedproducts hr {
+  width: 100%;
+  max-width: 200px;
+  height: 6px;
+  border-radius: 10px;
+  background: #252525;
+  margin: 0 auto; /* Centraliza a linha */
+}
+
+.relatedproducts-list {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebra de linha */
+  justify-content: center; /* Centraliza os itens */
+  gap: 30px; /* Espaçamento entre os itens */
+  width: 100%; /* Garante que a lista ocupe toda a largura disponível */
+}
+
+.relatedproducts-item {
+  flex: 1 1 calc(33.33% - 30px); /* Tamanho responsivo dos itens */
+  max-width: 350px; /* Largura máxima dos itens */
+  color: #000;
+  background-color: #faf2e7; /* Tom mais claro para os itens */
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Para que o padding não aumente a largura */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+  text-align: center;
+}
+
+.relatedproducts-item img {
+  width: 50%; /* Imagem ocupa toda a largura do item */
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.relatedproducts-item:hover {
+  transform: scale(1.05); /* Efeito de hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Regra de mídia para tablets */
+@media screen and (max-width: 1024px) {
   .relatedproducts-item {
-    width: 100%; /* Alterado para largura total */
-    max-width: 350px; /* Limitado a uma largura máxima */
-    color: #000;
-    background-color: #faf2e7; /* Alterado para um tom mais claro */
-    border-radius: 15px;
-    padding: 20px; /* Alterado para um preenchimento mais equilibrado */
-    margin-bottom: 20px; /* Adicionado espaçamento inferior entre os itens */
-    box-sizing: border-box; /* Incluído para garantir que o preenchimento não aumente a largura */
-    display: flex;
-    margin-left: -1390px;
+    flex: 1 1 calc(50% - 20px); /* Dois itens lado a lado em tablets */
   }
-  
-  /* Regra de mídia query para dispositivos com largura máxima de 600px */
-  @media screen and (max-width: 600px) {
-    .relatedproducts {
-      padding: 10px; /* Reduzido o padding para telas menores */
-    }
-  
-    .relatedproducts h1 {
-      font-size: 2rem; /* Tamanho de fonte reduzido para telas menores */
-    }
-  
-    .relatedproducts-item {
-      max-width: 100%; /* Largura total para telas menores */
-    }
+}
+
+/* Regra de mídia para dispositivos com largura máxima de 600px */
+@media screen and (max-width: 600px) {
+  .relatedproducts-item {
+    flex: 1 1 100%; /* Um item por linha em telas pequenas */
   }
-  
+}

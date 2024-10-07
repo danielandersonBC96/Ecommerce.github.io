@@ -1,6 +1,6 @@
 import React from 'react';
 import './Offers.css';
-import  product from '../Assets/carabina.png'
+import  product from '../Assets/product_28.png'
 
 
 export const Offers = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import  './Hero.css';
 import arow_icon from '../Assets/arrow.png';
-import motor_buffalo from '../Assets/26.png';
+import Productboy from '../Assets/product_26.png';
 
 
 export const Hero = () => {
@@ -15,14 +15,14 @@ export const Hero = () => {
           </div>
           <p> 
             
-          Nova coleção: Para todos os estilos. 
+          Nova coleção. Para todos os estilos. 
              </p>
         </div>
      
 
       </div>
       <div className="hero-right">
-        <img src={motor_buffalo} className='motor-logo' alt="" />
+        <img src={Productboy} className='motor-logo' alt="" />
 
       </div>
     </div>

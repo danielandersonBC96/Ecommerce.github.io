@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
-import userIcon from '../Assets/png_user_icon.png';
+import userIcon from '../Assets/logo_big.png';
 import raibralog from '../Assets/raibran_logo.png'
 import cartIcon from '../Assets/cart_icon.png';
 import { getDatabase, ref, get } from 'firebase/database';
@@ -82,7 +82,7 @@ export const NavBar = () => {
   return (
     <div className='navbar'>
       <div className='nav-log'>
-        <img src={raibralog} className='logo' alt='' />
+        <img src={userIcon} className='logo' alt='' />
         
       </div>
 

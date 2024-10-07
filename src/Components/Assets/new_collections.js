@@ -1,7 +1,7 @@
-import p1_img from "../Assets/carrinho.png";
-import p2_img from "../Assets/motorbufallo2.png";
-import p3_img from "./moto3.png";
-import p4_img from "../Assets/carabina.png";
+import p1_img from "../Assets/product_12.png";
+import p2_img from "../Assets/product_35.png";
+import p3_img from "../Assets/product_14.png";
+import p4_img from "../Assets/product_8.png";
 
 
 let new_collections = [

@@ -1,58 +1,97 @@
-.item{
-
-    width: 450px;
-
-  
-   color: white; 
-   background-color: black;
-   border-radius: 15px;
-   padding: 30px;
-  gap: 17px;
-}
-
-.item p {
-
-    margin: 6px 0px ;
-    padding: 10px;
-   
-    color: white;
-}
-
-.item img {
-
-    border-radius: 15px;
-}
-
-
-.item-prices{
-
+.item {
+    width: 100%;
+    max-width: 450px;
     color: black;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .item p {
+    margin: 10px 0;
+    padding: 8px;
+    color: #333;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .item-prices {
+    color: #000;
     font-size: 18px;
     font-weight: 600;
-    padding: 10px;
-    
-}
-
-.item-price-old{
-
-    color:red;
+    padding: 5px;
+  }
+  
+  .item-price-old {
+    color: red;
     font-size: 18px;
     font-weight: 500;
     text-decoration: line-through;
     margin-bottom: 15px;
-
-
-}
-
-.item-price-new{
-
-    margin-top: 15PX;
-}
-.button-item{
-
+  }
+  
+  .item-price-new {
+    color: green;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+  
+  .button-item {
     width: 100%;
     border-radius: 15px;
-    background-color:   yellow; 
-    color: black;
-    margin-right: 50px;
-}
+    background-color: black;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-item:hover {
+    background-color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .item {
+      padding: 15px;
+      max-width: 100%;
+    }
+  
+    .item img {
+      max-width: 200px;
+    }
+  
+    .item-prices {
+      font-size: 16px;
+    }
+  
+    .item-price-old,
+    .item-price-new {
+      font-size: 16px;
+    }
+  
+    .button-item {
+      font-size: 0.9rem;
+    }
+  }
+  
