@@ -1,6 +1,5 @@
 .item {
-    width: 100%;
-    max-width: 450px;
+    max-width: 330px;
     color: black;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
@@ -10,51 +9,58 @@
     align-items: center;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .item:hover {
+    margin: 20px;
+}
+
+.item:hover {
     transform: scale(1.05);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
-  }
-  
-  .item p {
-    margin: 10px 0;
-    padding: 8px;
-    color: #333;
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  .item img {
-    width: 100%;
-    max-width: 300px;
+}
+
+.item-image {
+    width: 50%;
+    max-width: 80px; /* Definindo a largura máxima para 100px */
     border-radius: 15px;
     margin-bottom: 20px;
-  }
-  
-  .item-prices {
-    color: #000;
-    font-size: 18px;
+}
+
+.item-name {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.item-prices {
+    text-align: center;
+    margin-bottom: 15px; /* Espaçamento entre o preço antigo e o novo */
+}
+
+.productdisplay-right-star {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    margin-bottom: 10px; /* Espaço abaixo da avaliação */
+}
+
+.star-icon {
+    width: 20px; /* Ajuste conforme necessário */
+    height: 20px; /* Ajuste conforme necessário */
+    margin-left: 5px; /* Espaçamento entre a palavra e as estrelas */
+}
+
+.new-price {
     font-weight: 600;
-    padding: 5px;
-  }
-  
-  .item-price-old {
-    color: red;
-    font-size: 18px;
-    font-weight: 500;
-    text-decoration: line-through;
-    margin-bottom: 15px;
-  }
-  
-  .item-price-new {
     color: green;
-    font-size: 20px;
-    font-weight: 700;
-    margin-top: 10px;
-  }
-  
-  .button-item {
+    margin-top: 5px;
+}
+
+.item-price-old {
+    color: red;
+    font-size: 16px;
+    text-decoration: line-through;
+}
+
+.button-item {
     width: 100%;
     border-radius: 15px;
     background-color: black;
@@ -65,33 +71,36 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .button-item:hover {
+}
+
+.button-item:hover {
     background-color: #333;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
     .item {
-      padding: 15px;
-      max-width: 100%;
+        padding: 15px;
+        max-width: 100%;
     }
-  
-    .item img {
-      max-width: 200px;
+
+    .item-image {
+        max-width: 100px; /* Mantendo a largura máxima para 100px em telas pequenas */
     }
-  
-    .item-prices {
-      font-size: 16px;
+
+    .item-name {
+        font-size: 1rem;
     }
-  
-    .item-price-old,
-    .item-price-new {
-      font-size: 16px;
+
+    .item-price-old {
+        font-size: 14px;
     }
-  
+
+    .new-price {
+        font-size: 14px;
+    }
+
     .button-item {
-      font-size: 0.9rem;
+        font-size: 0.9rem;
     }
-  }
-  
+}

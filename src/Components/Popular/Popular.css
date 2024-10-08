@@ -1,33 +1,63 @@
-.popular{
-
+.popular {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     height: 100vh;
-  
-    
 }
 
-.popular h1{
-
-    color: black  ;
+.popular h1 {
+    color: black;
     font-size: 50px;
     font-weight: 600;
-
+    text-align: center; /* Centraliza o texto em todas as telas */
 }
 
 .popular hr {
-
     width: 200px;
     height: 6px;
     border-radius: 10px;
-    background:   black;
+    background: black;
 }
-.popular-item{
 
+.popular-item {
     margin-top: 50px;
     display: flex;
     gap: 30px;
+}
 
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .popular {
+        height: auto; /* Ajusta a altura para telas menores */
+        padding: 20px; /* Adiciona um pouco de espaçamento */
+    }
+
+    .popular h1 {
+        font-size: 36px; /* Reduz o tamanho da fonte para telas menores */
+    }
+
+    .popular hr {
+        width: 150px; /* Ajusta o tamanho da linha para se adaptar à tela menor */
+    }
+
+    .popular-item {
+        flex-direction: column; /* Itens empilhados verticalmente em telas menores */
+        gap: 20px; /* Reduz o espaçamento entre os itens */
+    }
+}
+
+@media (max-width: 480px) {
+    .popular h1 {
+        font-size: 28px; /* Reduz ainda mais o tamanho da fonte para telas muito pequenas */
+    }
+
+    .popular hr {
+        width: 100px; /* Linha mais curta em telas muito pequenas */
+    }
+
+    .popular-item {
+        margin-top: 30px; /* Reduz a margem superior para caber melhor em telas pequenas */
+        gap: 15px; /* Reduz ainda mais o espaçamento */
+    }
 }

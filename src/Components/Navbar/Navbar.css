@@ -1,136 +1,172 @@
-.navbar{
-
+/* Estilos principais para a navbar */
+.navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between; /* Distribui os itens de maneira mais uniforme */
     padding: 16px;
-    box-shadow:  white;
-    background-color:   white;
+    background-color: white;
     text-decoration: none;
-   
-
+    align-items: center;
 }
 
-.nav-logo{
-
-    display:  flex;
-    align-items:  center;
-    gap: 10px;
-
-}
-
-.nav-menu{
-
+/* Estilo do logotipo */
+.nav-logo {
     display: flex;
     align-items: center;
-    list-style:none;
-    gap: 50px ;
-    background-color: #fff;
-    color:   white;;
-    font-size:  20px;
+    gap: 10px;
+}
+
+/* Menu de navegação */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    font-size: 20px;
     font-weight: 500;
-    text-emphasis: none;
+}
 
-}
-Link{
-    text-decoration: none;
-}
+/* Link de navegação */
 .nav-menu li {
-
     display: flex;
     flex-direction: column;
-    align-items:  center;
+    align-items: center;
     justify-content: center;
-    gap: 3px; 
+    gap: 3px;
     cursor: pointer;
-    color:   white;
-    background-color: #fff;
     padding: 15px;
-    border: none;
     border-radius: 10px;
-    text-decoration: none;
     border: solid 1px black;
     text-decoration: none;
+    color: black;
 }
 
-
-.nav-login-cart{
-
+/* Links com texto */
+.user-link,
+.User-Name {
     display: flex;
     align-items: center;
-    gap: 45px;
-    
-
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 }
 
-.nav-login-cart button{
+/* Seção de login e carrinho */
+.nav-login-cart {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
-    width:157px;
+/* Botão de login */
+.nav-login-cart button {
+    width: 157px;
     height: 58px;
     outline: none;
     border: 1px solid #7d7d7d;
     border-radius: 75px;
-    color: #fff;
+    color: white;
     font-size: 20px;
     font-weight: 500;
-    background: black;
+    background-color: black;
     cursor: pointer;
-
 }
 
-.cart{
-
+/* Estilo do carrinho */
+.cart {
     background-color: white;
     padding: 10px;
     border-radius: 35px;
+    position: relative;
 }
-.nav-cart-count{
 
+/* Contador do carrinho */
+.nav-cart-count {
     width: 25px;
     height: 25px;
     display: flex;
     justify-content: center;
-    align-items:  center;
-    margin-top: -35px;
-    margin-left: -55px;
-    border-radius: 11px;
+    align-items: center;
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    border-radius: 50%;
     font-size: 14px;
     background-color: #FF4141;
     color: white;
-    
 }
 
-.User-icon{
+/* Ícone de usuário */
+.User-icon {
     width: 50px;
-    margin-right: 50px;
     margin-left: 20px;
 }
 
-.user-link {
-    display: flex;
-    align-items: center; /* Centralizar verticalmente */
-  }
-
-.icon-on-line{
-
-  
-    width: 10px; /* Ajuste conforme necessário */
-    height: 10px; /* Ajuste conforme necessário */
-    background-color: green; /* Cor do ícone "online" */
-    border-radius: 50%; /* Forma circular */
-    margin-left: -45px; 
-
+/* Ícone de status online */
+.icon-on-line {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    margin-left: -45px;
 }
 
-
-.User-Name{
- 
-     text-decoration: none;
-     cursor: pointer;
-     color:     white;
-     margin-top: 20px;
-      margin-left: 10px;
-}
-
-.logo{
+/* Logotipo */
+.logo {
     width: 180px;
+}
+
+/* Responsividade para telas pequenas (celulares) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Menu e logo empilhados verticalmente */
+        align-items: center;
+        gap: 20px; /* Espaçamento entre os itens */
+    }
+
+    .nav-menu {
+        flex-direction: column; /* Itens do menu empilhados verticalmente */
+        gap: 15px; /* Reduz o espaço entre os links do menu */
+    }
+
+    .nav-login-cart {
+        flex-direction: column; /* Coloca o login e o carrinho um abaixo do outro */
+        gap: 10px;
+    }
+
+    .nav-login-cart button {
+        width: 100%; /* Botão de login ocupa a largura total */
+    }
+
+    .nav-cart-count {
+        top: 0;
+        right: 0;
+    }
+
+    .User-Name {
+        margin-top: 0;
+    }
+
+    .logo {
+        width: 140px; /* Ajusta o tamanho da logo para telas menores */
+    }
+
+    .cart {
+        margin: 0 auto; /* Centraliza o ícone do carrinho */
+    }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+    .nav-menu {
+        gap: 30px; /* Diminui o espaçamento entre os itens do menu */
+    }
+
+    .nav-login-cart button {
+        width: 140px;
+        height: 50px; /* Ajusta o tamanho do botão */
+    }
+
+    .logo {
+        width: 160px; /* Reduz o tamanho do logo para tablets */
+    }
 }
